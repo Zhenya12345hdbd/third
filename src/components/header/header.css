@@ -1,0 +1,27 @@
+.logo{
+    width: 126px;
+    height: 54px;
+}
+.logo h1{
+    font-family: 'Poppins-Bold';
+font-size: 31.93px;
+letter-spacing: 0px;
+}
+.menu{
+    display: flex;
+    gap: 74px;
+}
+.menu .menu-item{
+     font-family: 'Poppins-Regular';
+     font-size: 16px;
+     color: #333333;
+     align-self:center;
+}
+.menu .menu-item:hover{
+    font-weight: 900;
+}
+.button{
+    color: white;
+    padding: 14px 32px;
+    background-color: #2C3878;
+}

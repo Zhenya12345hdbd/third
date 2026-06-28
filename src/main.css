@@ -1,0 +1,57 @@
+@font-face {
+  font-family: 'Poppins-Regular'; /* Имя шрифта */
+  src: url('fonts/Poppins-Regular.woff2') format('woff2'), /* Путь и формат */
+       url('fonts/Poppins-Regular.woff') format('woff');
+  font-weight: 400; /* Насыщенность */
+  font-style: normal; /* Стиль (обычное, курсив) */
+  font-display: swap; /* Как отображать до загрузки */
+}
+@font-face {
+  font-family: 'Poppins-Bold'; /* Имя шрифта */
+  src: url('fonts/Poppins-Bold.woff2') format('woff2'), /* Путь и формат */
+       url('fonts/Poppins-Bold.woff') format('woff');
+  font-weight: 900; /* Насыщенность */
+  font-style: normal; /* Стиль (обычное, курсив) */
+  font-display: swap; /* Как отображать до загрузки */
+}
+@font-face {
+  font-family: 'Poppins-SemiBold'; /* Имя шрифта */
+  src: url('fonts/Poppins-SemiBold.woff2') format('woff2'), /* Путь и формат */
+       url('fonts/Poppins-SemiBold.woff') format('woff');
+  font-weight: 500; /* Насыщенность */
+  font-style: normal; /* Стиль (обычное, курсив) */
+  font-display: swap; /* Как отображать до загрузки */
+}
+
+
+
+body{
+    max-width: 1440px;
+    margin: auto;
+    display: flex;
+}
+section{
+    mim-width: 1440px;
+    margin: auto;
+    display: flex;
+}
+header{
+    min-width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+footer{
+    min-width: 1200px;
+    margin: auto;
+    display: flex;
+}
+
+
+.container{
+    max-width: 1200px;
+    background-color: white;
+}

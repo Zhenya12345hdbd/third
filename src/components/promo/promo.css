@@ -1,0 +1,84 @@
+.promo_up{
+    width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    position: relative;
+    
+}
+.big_text{
+    width: 681px;
+}
+.big_text h1{
+    font-family: 'Poppins-bold';
+font-size: 72px;
+line-height: 140%;
+
+}
+.padding{
+    padding-top: 110px;
+}
+.promo_text_90{
+display: flex;
+
+transform: rotate(-90deg);
+margin-top: 150px;
+}
+.promo_text_90 h3{
+     font-family: 'Poppins-SemiBold';
+line-height: 150%;
+letter-spacing: 0%;
+align-self: flex-end;
+width: 160px;
+}
+.line{
+    height: 3px;
+    background-color: black;
+    position: absolute;
+    right: 0;
+    
+}
+.promo_down{
+   margin-top: 50px;
+   display: flex;
+   position: relative;
+   
+    
+}
+.promo_down img{
+     height: 515px;
+     width: 100%;
+    object-fit: cover;
+}
+.promo_middle{
+    width: 250px;
+    height: 525px;
+    background-color: #2C3878;
+    padding: 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    position: absolute;
+    right: 150px;
+    bottom: 200px;
+    z-index: 2;
+    text-align: center;
+}
+
+.promo_middle_text h2{
+    font-family: 'Poppins-Regular';
+font-size: 52px;
+line-height: 160%;
+letter-spacing: 0%;
+
+
+}
+.promo_middle_text p{
+ font-family: 'Poppins-Regular';
+font-size: 16px;
+line-height: 160%;
+letter-spacing: 0%;
+
+}

@@ -1,0 +1,15 @@
+.product_text{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 1200px;
+    padding-top: 20px;
+}
+.product_text h1{
+    width: 337px;
+    font-size: 36px;
+}
+.product_text p{
+    width: 470px;
+    font-size: 18px;
+}

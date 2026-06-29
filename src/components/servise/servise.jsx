@@ -1,8 +1,6 @@
-
-
 import './servise.css'
 import Line from '../line';
-
+import servise_img from './servise_img.jpg'
 import { servise_data } from './servise_data';
 import Servise_item from './servise_item';
 let servis
@@ -11,7 +9,7 @@ function Servise() {
     
   return (
     <section>
-        <div className='container about'>
+        <div className='container about absiute'>
             <div className='servise_text'>
                  <Line
                 width={530}
@@ -25,18 +23,17 @@ function Servise() {
                         Customize your interior design into a dream place with the best designers and quality furniture. We try our best to fulfill your expectations.
                 </p>
                 <div className='servise_list'>
-                
                      {servis =servise_data.map(sert =>
                         <Servise_item
                         num={sert.num}
                         some={sert.some}
                         />
-
                     )}
                     
-                
-
             </div>
+            </div>
+            <div className='servise_img'>
+                <img src={servise_img} alt="" />
             </div>
             
                

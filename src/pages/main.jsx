@@ -3,6 +3,8 @@ import Promo from "../components/promo/promo";
 import Main_about from "../components/main_about_top/main_about";
 import Main_about_bottom from "../components/main_about_bottom/main_about_bottom";
 import Servise from "../components/servise/servise";
+import Product_up from "../components/product/product";
+import Product_down from "../components/product_down/product_down";
 
 function Main_Page() {
   return (
@@ -11,6 +13,8 @@ function Main_Page() {
         <Main_about/>
         <Main_about_bottom/>
         <Servise/>
+        <Product_up/>
+        <Product_down/>
     </div>
   );
 }

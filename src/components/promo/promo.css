@@ -34,8 +34,7 @@ width: 160px;
 .line{
     height: 3px;
     background-color: black;
-    position: absolute;
-    right: 0;
+    margin-top: 15px;
     
 }
 .promo_down{

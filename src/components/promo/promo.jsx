@@ -20,8 +20,9 @@ function Promo() {
                 <div className='line'>
                 </div>
                 <Line
-                top={50}
+                top={35}
                 width={683}
+                position={'absolute'}
                 />
                 <div className='promo_text_90'>
                     <h3>

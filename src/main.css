@@ -55,3 +55,17 @@ footer{
     max-width: 1200px;
     background-color: white;
 }
+.gray_small{
+        font-family: 'Poppins-Regular';
+font-weight: 400;
+font-size: 18px;
+line-height: 160%;
+color: #9C9C9C;
+}
+.big_black_text{
+    font-family: 'Poppins-SemiBold';
+font-weight: 600;
+font-size: 36px;
+line-height: 170%;
+
+}

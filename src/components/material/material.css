@@ -6,6 +6,11 @@
     height: 500px;
     display: flex;
     flex-direction: column;
+    
+}
+.material{
+    width: 1200px;
+    position: relative;
 }
 .material_left p{
     width: 500px;
@@ -31,6 +36,9 @@ padding: 14px 32px;
     background-size: 195px 178px;
     background-repeat: no-repeat;
     background-position: 380px 265px;
+    position: absolute;
+    right: 0px;
+    top:100px;
     
 }
 .material_big{

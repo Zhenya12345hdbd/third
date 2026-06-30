@@ -1,6 +1,8 @@
+
+
 import './servise.css'
 import Line from '../line';
-import servise_img from './servise_img.jpg'
+
 import { servise_data } from './servise_data';
 import Servise_item from './servise_item';
 let servis
@@ -9,7 +11,7 @@ function Servise() {
     
   return (
     <section>
-        <div className='container about absiute'>
+        <div className='container about'>
             <div className='servise_text'>
                  <Line
                 width={530}
@@ -28,12 +30,12 @@ function Servise() {
                         num={sert.num}
                         some={sert.some}
                         />
+
                     )}
                     
+                
+
             </div>
-            </div>
-            <div className='servise_img'>
-                <img src={servise_img} alt="" />
             </div>
             
                

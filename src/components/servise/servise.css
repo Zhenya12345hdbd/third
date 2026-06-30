@@ -6,7 +6,10 @@
     padding-right: 40px;
 }
 
-
+.material{
+    display: flex;
+    
+}
 .servise_text h1{
     margin-top: 15px;
     margin-bottom: 30px;

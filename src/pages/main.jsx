@@ -5,6 +5,7 @@ import Main_about_bottom from "../components/main_about_bottom/main_about_bottom
 import Servise from "../components/servise/servise";
 import Product_up from "../components/product/product";
 import Product_down from "../components/product_down/product_down";
+import Material from "../components/material/material";
 
 function Main_Page() {
   return (
@@ -15,6 +16,7 @@ function Main_Page() {
         <Servise/>
         <Product_up/>
         <Product_down/>
+        <Material/>
     </div>
   );
 }

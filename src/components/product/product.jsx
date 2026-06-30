@@ -5,7 +5,7 @@ function Product_up() {
     
   return (
     <section>
-        <div className='container'>
+        <div className='container about product'>
             <Line
             text={'PRODUCT'}
             width={504}

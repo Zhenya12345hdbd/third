@@ -9,7 +9,8 @@ let menulis
 function Header() {
     
   return (
-    <header>
+    <section>
+        <header>
         <img src={logo} alt="" />
         <div className='menu'>
             {menulis = menu.map(men =>
@@ -24,6 +25,8 @@ function Header() {
         </div>
       
     </header>
+    </section>
+    
   );
 }
 

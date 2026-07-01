@@ -27,13 +27,14 @@
 
 body{
     max-width: 1440px;
-    margin: auto;
-    display: flex;
+    margin: 0 auto;
+   
 }
 section{
-    mim-width: 1440px;
-    margin: auto;
+    width: 1440px;
+    margin: 0 auto;
     display: flex;
+    justify-content: center;
 }
 header{
     min-width: 1200px;

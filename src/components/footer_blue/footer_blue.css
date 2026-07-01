@@ -1,0 +1,23 @@
+
+.footer_blue{
+ background-color: #2C3878;
+}
+.blue{
+    display: flex;
+    width: 1200px;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 38px;
+    padding-bottom: 38px;
+}
+.blue h1{
+    width: 613px;
+    color: white;
+}
+.blue_right{
+    width: 432px;
+}
+.blue_right p{
+    margin-bottom: 50px;
+    
+}

@@ -7,17 +7,22 @@ import { Routes } from "react-router-dom";
 import Not_found from "./pages/not_found";
 import About from "./pages/about";
 import { useParams } from "react-router-dom";
+import { menu_about } from "./pages/about_data";
 
 
 function App() {
-const { path } = useParams();
+
+
+
+
   
   return (
     <div>
       <Header/>
       <Routes>
          <Route path="/" element={<Main_Page/>}/>
-         <Route path="/:path" element={<About />}/>
+         <Route path="/:path" element={<About 
+                                             />}/>
           <Route path="*" element={<Not_found />} />
       </Routes>
      

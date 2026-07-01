@@ -3,6 +3,8 @@ import { menu } from './menu_list';
 import logo from '../header/logo.png'
 import Button from './button';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 let menulis
 
@@ -11,16 +13,20 @@ function Header() {
   return (
     <section>
         <header>
-        <img src={logo} alt="" />
+        <Link to="/"><img src={logo} alt="" /></Link>
         <div className='menu'>
             {menulis = menu.map(men =>
-                 <a href="#" className='menu-item'>{men.item}</a>
+                 <NavLink to={men.path} className='menu-item'>{men.item}</NavLink>
             
             )}
-            <Button
-            text = {'Contact Us'}
-            
-            />
+              <Link to="/contact">
+               <Button
+                  text = {'Contact Us'}
+                
+                />
+
+              </Link>
+               
             
         </div>
       

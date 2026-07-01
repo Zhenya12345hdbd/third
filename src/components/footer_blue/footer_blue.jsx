@@ -1,6 +1,7 @@
 
 import './footer_blue.css'
 import Button from '../header/button';
+import { Link } from 'react-router-dom';
 
 
 function Footer_blue() {
@@ -15,12 +16,15 @@ function Footer_blue() {
                 <p className='gray_small'>
                     Contact us below to work together to build your amazing interior
                 </p>
-                <Button
+                <Link to="/contact">
+                     <Button
                     text={'Contact Us'} 
                     background={'white'}       
                     color = {'black'} 
                     alighSelf={'flex-start'}  
                 />
+                </Link>
+               
 
             </div>
             

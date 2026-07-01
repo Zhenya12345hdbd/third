@@ -1,18 +1,23 @@
 import { useParams } from "react-router-dom";
 import Button from "../components/header/button";
 import Servise from "../components/servise/servise";
-let butmi = Servise;
-function About() {
+import Product_down from "../components/product_down/product_down";
 
+let ertt = <Servise/>;
+
+function About() {
       const { path } = useParams();
 
       if (path == "About"){
-         console.log('12')
+         ertt = <Servise/>
       }
+       if (path == "Services"){
+           ertt = <Product_down/>;
+      } 
   return (
     <div>
-        <h1>{butmi}</h1>
         <h1>из апп {path}</h1>
+        {ertt}
 
     </div>
   );

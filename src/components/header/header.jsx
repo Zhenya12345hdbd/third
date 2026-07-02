@@ -19,7 +19,7 @@ function Header() {
                  <NavLink to={men.path} className='menu-item'>{men.item}</NavLink>
             
             )}
-              <Link to="/contact">
+              <Link to="/Contact">
                <Button
                   text = {'Contact Us'}
                 

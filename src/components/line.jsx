@@ -3,7 +3,7 @@
 function Line(lin) {
     
   return (
-    <div className='up' style={{top: lin.top + 'px' , position:lin.position, right: lin.top + 'px'  }} >
+    <div className='up' style={{top: lin.top + 'px' , position:lin.position, right: lin.top + 'px' , alignSelf: lin.align }} >
                 <h2>
                    {lin.text}
                 </h2>

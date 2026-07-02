@@ -16,7 +16,7 @@ function Footer_blue() {
                 <p className='gray_small'>
                     Contact us below to work together to build your amazing interior
                 </p>
-                <Link to="/contact">
+                <Link to="/Contact">
                      <Button
                     text={'Contact Us'} 
                     background={'white'}       

@@ -8,7 +8,7 @@ import Line from '../line';
 
 let menulis
 
-function Material() {
+function Material(mat) {
     
   return (
     <section>

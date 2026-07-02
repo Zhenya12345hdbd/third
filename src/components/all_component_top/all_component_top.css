@@ -1,0 +1,37 @@
+.all_component{
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+   align-items: center;
+   padding-top: 100px;
+}
+.all_component h1{
+  font-family: 'Poppins_Bold';
+font-weight: 700;
+
+font-size: 56px;
+line-height: 140%;
+letter-spacing: 0%;
+
+
+}
+.all_component p{
+  font-family: 'Poppins_Regular';
+font-weight: 400;
+font-size: 18px;
+line-height: 160%;
+letter-spacing: 0%;
+text-align: center;
+width: 520px;
+padding-top: 36px;
+
+
+}
+
+.all_component img{
+    width: 1200px;
+    height: 513px;
+    object-fit: cover;
+    padding-top: 80px;
+    padding-bottom: 100px;
+}

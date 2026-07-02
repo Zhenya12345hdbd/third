@@ -7,7 +7,7 @@ import { Routes } from "react-router-dom";
 import Not_found from "./pages/not_found";
 import About from "./pages/about";
 import { useParams } from "react-router-dom";
-import { menu_about } from "./pages/about_data";
+import { menu_about } from "./components/all_component_top/about_data";
 
 
 function App() {

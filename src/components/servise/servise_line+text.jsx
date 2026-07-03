@@ -13,10 +13,10 @@ function Servise_line_text(ser) {
                 top={135}
                 text = {'SERVISE'}
                 />
-                <h1 className='big_black_text'>
+                <h1 className='big_black_text big_black_text_padding'>
                     {ser.big_text}
                 </h1>
-                <p className='gray_small'>
+                <p className='gray_small' style={{width:ser.width_small_text +'px'}}>
                         {ser.small_text}
                 </p>
 

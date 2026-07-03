@@ -2,6 +2,7 @@ import './promo.css'
 import promo from '../promo/promo.jpg'
 import Promo_middle_item from './promo_middle_item';
 import { middle } from './promo_middle_data';
+import Promo_middle_all from './promo_middle_all';
 import Line from '../line';
 
 let midl
@@ -33,15 +34,9 @@ function Promo() {
             
             <div className='promo_down'>
                 <img src={promo} alt="" />
-                <div className='promo_middle'>
-                {midl = middle.map(med =>
-                    
-                <Promo_middle_item
-                        big_text={med.big_text}
-                        small_text={med.small_text}
+                <Promo_middle_all
+                position={'absolute'}
                 />
-                )}
-            </div>
             </div>
             
            

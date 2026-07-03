@@ -1,0 +1,11 @@
+.main_2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 1200px;
+    padding-top: 56px;
+}
+.main_2 img{
+    width: 890px;
+    height: 525px;
+}

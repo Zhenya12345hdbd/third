@@ -7,8 +7,10 @@ function About_main(all) {
     
   return (
     <section>
-        <div className='contaiter '>
-         ddd
+        <div className='contaiter about_main'>
+         <h1 className='big_black_text'>
+            interior customization with Danaanz, best quality with professional workers
+         </h1>
         </div>
         
     </section>

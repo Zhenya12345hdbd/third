@@ -18,7 +18,7 @@ function All_component_top(all) {
             </p>
             <img src={all.img} style={{display: all.display }} alt=''/>
             <Line
-                text={'ACHIEVEMENT'}
+                text={all.text}
                 width ={464}
                 align={'start'}
              />

@@ -1,0 +1,26 @@
+.servise_main_1{
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    gap: 40px;
+    padding-top: 52px;
+}
+.servise_main_1_item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+.servise_main_1_item img{
+   width: 746px;
+height: 365px;
+object-fit: cover;
+}
+.servise_main_1_item_right{
+    width: 334px;
+    height: 170px;
+    align-self: center;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}

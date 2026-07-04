@@ -1,3 +1,7 @@
+.product{
+
+    margin-top: 50px;
+}
 .product_text{
     display: flex;
     flex-direction: row;

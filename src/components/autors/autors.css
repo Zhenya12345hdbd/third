@@ -1,0 +1,30 @@
+.autors{
+    display: flex;
+    flex-direction: row;
+    width: 1200px;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding-top: 100px;
+}
+.autors_item{
+    width: 282px;
+    height: 386px;
+    background-color: #2C3878;
+    position: relative;
+    justify-content: center;
+}
+.autors_item img{
+    width: 282px;
+    height: 386px;
+    
+}
+.autors_text{
+    position: absolute;
+    width: 258px;
+    height: 96px;
+    z-index: 2;
+    background-color: white;
+    bottom:13px;
+    left: 13px;
+    padding: 17px 17px 58px 16px ;
+}

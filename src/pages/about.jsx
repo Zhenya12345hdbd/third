@@ -11,11 +11,13 @@ import About_main_3 from "../components/about_main_3/about_main_3";
 import About_main_4 from "../components/about_main_4/about_main_4";
 import Servise_main_1 from "../components/servise_main_1/servise_main_1";
 import Product_up from "../components/product/product";
+import Autors from "../components/autors/autors";
 
 
 let menuItem
 let ertt = <Servise/>;
 let display = 'block'
+let line_display = 'flex'
 
 function About(aspid) {
   const { path } = useParams();
@@ -23,14 +25,20 @@ function About(aspid) {
       const menuItem = menu_about.find((item) => item.path === String(path));
   
       if (path == "About"){
-         ertt = [<About_main/>,<About_main_2/>,<About_main_3/>,<About_main_4/>]
+         ertt = [<About_main/>,<About_main_2/>,<About_main_3 big ={menuItem.big_text2} text={menuItem.small_text2}/>,<About_main_4/>]
          display = 'block'
+         line_display = 'flex'
       }
        if (path == "Services"){
            ertt = [<Servise_main_1/>, <Product_up/>, <Product_down padding_down={100}/>]
            display = 'block'
-      } if (path == "Contact"){           
-       
+           line_display = 'flex'
+      }if (path == "Our"){
+           ertt = [<About_main_3 big ={menuItem.big_text1} text = {menuItem.line_text} paddingTop = {0}/>,<Autors/>,<About_main_3 big ={menuItem.big_text2} text = {menuItem.small_text1} paddingTop = {100}/>,<About_main_4/> ]
+           display = 'block'
+           line_display = 'none'
+      }
+       if (path == "Contact"){           
             display = 'none'
 
       } 
@@ -43,8 +51,8 @@ function About(aspid) {
         img = {menuItem.img}
         display = {display}
         text={menuItem.line_text}
+        line_display = {line_display}
         />
-        
         {ertt}
         
         

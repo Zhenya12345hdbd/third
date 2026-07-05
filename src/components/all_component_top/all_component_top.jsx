@@ -1,6 +1,7 @@
 import './all_component_top.css'
 import about from './about.jpg'
 import Line from '../line';
+import Servise_line_text from '../servise/servise_line+text';
 
 
 let menulis
@@ -21,7 +22,10 @@ function All_component_top(all) {
                 text={all.text}
                 width ={464}
                 align={'start'}
+                line_display = {all.line_display}
              />
+             
+             
         </div>
         
     </section>

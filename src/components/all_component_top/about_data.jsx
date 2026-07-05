@@ -14,6 +14,11 @@ export const menu_about = [
     img : about,
     line_text: 'ACHIEVEMENT',
 
+    big_text1 :'interior customization with Danaanz, best quality with professional workers',
+    big_text2 :'Why Choose Us',
+    small_text2 : 'SERVICE',
+    
+
 },
 {
     item:'Services',
@@ -22,6 +27,11 @@ export const menu_about = [
     small: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
     img : servise,
     line_text: 'ACHIEVEMENT',
+
+    big_text1 :'',
+    big_text2 :'Choose your product themes.',
+    small_text1 : 'PRODUCT',
+
 },
 {
     item:'Our Teams',
@@ -30,6 +40,13 @@ export const menu_about = [
     small: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
     img : our,
     line_text: 'Designer',
+
+    big_text1 :'Creative Person',
+    big_text2 :'Why Choose Us',
+    small_text1 : 'SERVICE',
+
+    
+
 },
 {
     item:'Contact us',

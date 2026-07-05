@@ -1,0 +1,28 @@
+.visit{
+    width: 1200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 30px;
+    margin-bottom: 100px;
+
+}
+.visit_left{
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.visit_right{
+    width: 800px;
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+.visit_item{
+    width: 340px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}

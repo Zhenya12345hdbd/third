@@ -12,6 +12,11 @@ import About_main_4 from "../components/about_main_4/about_main_4";
 import Servise_main_1 from "../components/servise_main_1/servise_main_1";
 import Product_up from "../components/product/product";
 import Autors from "../components/autors/autors";
+import Form from "../components/form/form";
+import Line from "../components/line";
+import Visit from "../components/visit/visit";
+import Line_location from "../components/line_location";
+
 
 
 let menuItem
@@ -38,8 +43,10 @@ function About(aspid) {
            display = 'block'
            line_display = 'none'
       }
-       if (path == "Contact"){           
+       if (path == "Contact"){     
+        ertt = [<Form/>,<Line_location align={'start'} display = {'flex'} align ={'start'} text = {menuItem.line_text} width={510}/>, <Visit/> ]      
             display = 'none'
+            line_display= 'none'
 
       } 
 

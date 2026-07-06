@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { menu_about } from '../components/all_component_top/about_data';
 import All_component_top from '../components/all_component_top/all_component_top';
+import portofolio from '../components/all_component_top/portofolio.jpg'
 
 
 let aut
@@ -23,14 +24,14 @@ function Portofolio(all) {
         <div className='contaiter autors'>
             ggg
             {menuItem.item}
-            {menuItem1.path}
+           
 
             <All_component_top
-        big = {menuItem1.big}
-        small = {menuItem1.small}
-        img = {menuItem1.img}
+        big = {'PORTOFOLIO'}
+        small = {'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'}
+        img = {portofolio}
        
-        text={menuItem1.line_text}
+        text={'PORTOFOLIO'}
         
         />
             

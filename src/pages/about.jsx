@@ -25,9 +25,11 @@ let menuItem
 let ertt = <Servise/>;
 let display = 'block'
 let line_display = 'flex'
+let white
 
 function About(aspid) {
   const { path, item } = useParams();
+  const menuItem1 = autors.find((items) => items.item === String(item));
       
       const menuItem = menu_about.find((item) => item.path === String(path));
       
@@ -42,9 +44,13 @@ function About(aspid) {
            display = 'block'
            line_display = 'flex'
       }if (path == "Our"){
-           ertt = [<About_main_3 big ={menuItem.big_text1} text = {menuItem.line_text} paddingTop = {0}/>,<Autors/>,<About_main_3 big ={menuItem.big_text2} text = {menuItem.small_text1} paddingTop = {100}/>,<About_main_4/> ]
+           ertt = [<About_main_3 big ={menuItem.big_text1} text = {menuItem.line_text} paddingTop = {0}/>,<Autors path = {menuItem.path}/>,<About_main_3 big ={menuItem.big_text2} text = {menuItem.small_text1} paddingTop = {100}/>,<About_main_4/> ]
            display = 'block'
            line_display = 'none'
+           if (item){
+            
+           }
+          
       }
        if (path == "Contact"){     
         ertt = [<Form/>,<Line_location align={'start'} display = {'flex'} align ={'start'} text = {menuItem.line_text} width={510}/>, <Visit/> ]      
@@ -64,6 +70,7 @@ function About(aspid) {
         line_display = {line_display}
         />
         {ertt}
+        
         
         
     </div>

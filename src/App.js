@@ -23,7 +23,7 @@ function App() {
       <Routes>
          <Route path="/" element={<Main_Page/>}/>
          <Route path="/:path" element={<About />}/>
-         <Route path="/:path/:item" element={<Portofolio/>}/>
+         <Route path="/Our/:item" element={<Portofolio/>}/>
           <Route path="*" element={<Not_found />} />
       </Routes>
      

@@ -14,7 +14,7 @@ function Autors(all) {
     <section>
         <div className='contaiter autors'>
             {aut = autors.map(autor =>
-            <Link to={`/Portofolio/${autor.item}`} >
+            <Link to={`${autor.item}`} >
                  <div className='autors_item'>
                 <img src={autor.img}/>
                 <div className='autors_text'>

@@ -9,43 +9,51 @@ import img8 from './item8.png'
 export const autors = [
 {
     name:'Shoo Phar Dhie',
+    item: 'Shoo1',
     profession : 'CEO',
     img: img1,
     
 },
 {
     name:'Shoo Phar Dhie',
+    item: 'Our/Shoo1',
     profession : 'CEO',
     img: img2,
     
 },
 {
     name:'Shoo Phar Dhie',
+    item: 'Shoo3',
     profession : 'CEO',
     img: img3,
     
 },{
     name:'Shoo Phar Dhie',
+    item: 'Shoo4',
     profession : 'CEO',
     img: img4,
     
 },{
     name:'Shoo Phar Dhie',
+    item: 'Shoo5',
     profession : 'CEO',
     img: img5,
     
 },{
     name:'Shoo Phar Dhie',
+    item: 'Shoo6',
     profession : 'CEO',
     img: img6,
     
 },{
     name:'Shoo Phar Dhie',
+    item: 'Shoo7',
     profession : 'CEO',
     img: img7,
     
 },{
     name:'Shoo Phar Dhie',
+    item: 'Shoo8',
     profession : 'CEO',
     img: img8,
     

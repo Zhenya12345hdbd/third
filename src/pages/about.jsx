@@ -16,6 +16,8 @@ import Form from "../components/form/form";
 import Line from "../components/line";
 import Visit from "../components/visit/visit";
 import Line_location from "../components/line_location";
+import { autors } from "../components/autors/autors_list";
+import Portofolio from "./portofolio";
 
 
 
@@ -25,9 +27,10 @@ let display = 'block'
 let line_display = 'flex'
 
 function About(aspid) {
-  const { path } = useParams();
+  const { path, item } = useParams();
       
       const menuItem = menu_about.find((item) => item.path === String(path));
+      
   
       if (path == "About"){
          ertt = [<About_main/>,<About_main_2/>,<About_main_3 big ={menuItem.big_text2} text={menuItem.small_text2}/>,<About_main_4/>]
@@ -48,7 +51,7 @@ function About(aspid) {
             display = 'none'
             line_display= 'none'
 
-      } 
+      }  
 
   return (
     <div> 

@@ -8,6 +8,7 @@ import Not_found from "./pages/not_found";
 import About from "./pages/about";
 import { useParams } from "react-router-dom";
 import { menu_about } from "./components/all_component_top/about_data";
+import Portofolio from "./pages/portofolio";
 
 
 function App() {
@@ -21,8 +22,8 @@ function App() {
       <Header/>
       <Routes>
          <Route path="/" element={<Main_Page/>}/>
-         <Route path="/:path" element={<About 
-                                             />}/>
+         <Route path="/:path" element={<About />}/>
+         <Route path="/:path/:item" element={<Portofolio/>}/>
           <Route path="*" element={<Not_found />} />
       </Routes>
      

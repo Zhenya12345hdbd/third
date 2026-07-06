@@ -45,8 +45,6 @@ export const menu_about = [
     big_text2 :'Why Choose Us',
     small_text1 : 'SERVICE',
 
-    
-
 },
 {
     item:'Contact us',

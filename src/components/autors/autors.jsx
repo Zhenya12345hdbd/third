@@ -1,5 +1,6 @@
 import './autors.css'
 import { autors } from './autors_list';
+import { Link } from 'react-router-dom';
 
 
 let aut
@@ -13,7 +14,8 @@ function Autors(all) {
     <section>
         <div className='contaiter autors'>
             {aut = autors.map(autor =>
-            <div className='autors_item'>
+            <Link to={`/Portofolio/${autor.item}`} >
+                 <div className='autors_item'>
                 <img src={autor.img}/>
                 <div className='autors_text'>
                     <h3 className='black_text_middle'>
@@ -24,8 +26,11 @@ function Autors(all) {
                     </p>
 
                 </div>
-
             </div>
+
+                
+            </Link>
+           
 
             )}
             

@@ -20,7 +20,7 @@ function Portofolio(all) {
     const { item, path } = useParams();
           const menuItem = autors.find((items) => items.item === String(item));
                 
-                const menuItem1 = menu_about.find((item) => item.path === String(path));
+        const menuItem1 = menu_about.find((item) => item.path === String(path));
           
     
   return (
@@ -37,6 +37,7 @@ function Portofolio(all) {
             {imgl = img_list.map(image =>
                  <Portofolio_item1
                 img = {menuItem.img}
+                item ={menuItem.item}
                 name = {menuItem.name}
                 profession = {menuItem.profession}
                 main_img ={image.img}
@@ -44,6 +45,7 @@ function Portofolio(all) {
                 big={image.big}
                 left = {image.left}
                 right = {image.right}
+                project = {image.project}
         />
 
             )}

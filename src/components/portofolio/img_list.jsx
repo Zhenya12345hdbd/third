@@ -10,6 +10,7 @@ export const img_list = [
     big:'Minimalist Room',
     flexdDirection: 'row',
     right : '150px',
+    project : 'Minimalist',
 
     
 },
@@ -18,6 +19,7 @@ export const img_list = [
     big:'Vintage Room',
     flexdDirection: 'row-reverse',
     left : '150px',
+    project : 'Vintage',
     
 
 },
@@ -26,12 +28,15 @@ export const img_list = [
     big:'Modern Room',
     flexdDirection: 'row',
     right : '150px',
+    project : 'Modern',
 },
 {
     img:four,
     big:'transitional Room',
      flexdDirection: 'row-reverse',
       left : '150px',
+      project : 'transitional'
+
 },
 
 ]

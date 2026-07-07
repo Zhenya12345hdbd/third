@@ -33,7 +33,7 @@ function Portofolio_item1(all) {
                 <p className='gray_small'>
                     Online learning with us does not interfere with your daily life. because learning can be done anytime and anywhere.
                 </p>
-                <Link to={'/'}><Button text={'See More'}/></Link>
+                <Link to={`/Our/${all.item}/${all.project}`}><Button text={'See More'}/></Link>
 
             </div>
         </div> 

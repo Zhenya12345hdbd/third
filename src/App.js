@@ -25,7 +25,7 @@ function App() {
          <Route path="/" element={<Main_Page/>}/>
          <Route path="/:path" element={<About />}/>
          <Route path="/Our/:item" element={<Portofolio/>}/>
-          <Route path="/Our/:item/:element" element={<Progect/>}/>
+          <Route path="/Our/:item/:project" element={<Progect/>}/>
           <Route path="*" element={<Not_found />} />
       </Routes>
      

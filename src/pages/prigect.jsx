@@ -11,21 +11,25 @@ import About_main_3 from '../components/about_main_3/about_main_3';
 import About_main_4 from '../components/about_main_4/about_main_4';
 
 
+
 let imgl
 
 
 
 
 function Progect(all) {
-    const { item, path } = useParams();
+    const { item, path , project } = useParams();
           const menuItem = autors.find((items) => items.item === String(item));
-                
-                const menuItem1 = menu_about.find((item) => item.path === String(path));
+     
+      const menuItem2 = img_list.find((item) => item.project === String(project));
           
     
   return (
     
         <div>
+            {menuItem.item}
+            
+            {menuItem2.project}
          
             
         </div>

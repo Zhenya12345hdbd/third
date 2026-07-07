@@ -24,6 +24,7 @@ letter-spacing: 0%;
 text-align: center;
 width: 520px;
 padding-top: 36px;
+padding-bottom: 80px;
 
 
 }
@@ -32,6 +33,6 @@ padding-top: 36px;
     width: 1200px;
     height: 513px;
     object-fit: cover;
-    padding-top: 80px;
-    padding-bottom: 100px;
+    margin-bottom: 100px;
+    
 }

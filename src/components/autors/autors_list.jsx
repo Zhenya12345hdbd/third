@@ -8,51 +8,51 @@ import img7 from './item7.png'
 import img8 from './item8.png'
 export const autors = [
 {
-    name:'Shoo Phar Dhie',
+    name:'Shoo Phar Dhie1',
     item: 'Shoo1',
     profession : 'CEO',
     img: img1,
     
 },
 {
-    name:'Shoo Phar Dhie',
-    item: 'Our/Shoo1',
+    name:'Shoo Phar Dhie2',
+    item: 'Shoo2',
     profession : 'CEO',
     img: img2,
     
 },
 {
-    name:'Shoo Phar Dhie',
+    name:'Shoo Phar Dhie3',
     item: 'Shoo3',
     profession : 'CEO',
     img: img3,
     
 },{
-    name:'Shoo Phar Dhie',
+    name:'Shoo Phar Dhie4',
     item: 'Shoo4',
     profession : 'CEO',
     img: img4,
     
 },{
-    name:'Shoo Phar Dhie',
+    name:'Shoo Phar Dhie5',
     item: 'Shoo5',
     profession : 'CEO',
     img: img5,
     
 },{
-    name:'Shoo Phar Dhie',
+    name:'Shoo Phar Dhie6',
     item: 'Shoo6',
     profession : 'CEO',
     img: img6,
     
 },{
-    name:'Shoo Phar Dhie',
+    name:'Shoo Phar Dhie7',
     item: 'Shoo7',
     profession : 'CEO',
     img: img7,
     
 },{
-    name:'Shoo Phar Dhie',
+    name:'Shoo Phar Dhie8',
     item: 'Shoo8',
     profession : 'CEO',
     img: img8,

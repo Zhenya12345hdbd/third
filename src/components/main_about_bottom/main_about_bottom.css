@@ -45,8 +45,7 @@ color: #9C9C9C;
     gap: 20px;
     background-color: white;
     align-items: center;
-    right: 150px;
-    top: 100px;
+    top: 70px;
     position: absolute;
     box-shadow: 6px 0px 16px -4px rgba(34, 60, 80, 0.2);
 }
@@ -55,6 +54,7 @@ color: #9C9C9C;
     height: 56px;
     object-fit: cover;
     border-radius: 50%;
+    background-color: gray;
 }
 .table_text h5{
     font-family: 'Poppins-SemiBold';

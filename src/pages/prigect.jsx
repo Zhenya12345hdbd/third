@@ -16,7 +16,7 @@ let imgl
 
 
 
-function Portofolio(all) {
+function Progect(all) {
     const { item, path } = useParams();
           const menuItem = autors.find((items) => items.item === String(item));
                 
@@ -26,31 +26,7 @@ function Portofolio(all) {
   return (
     
         <div>
-            ggg
-            {menuItem.item}
-            <All_component_top
-        big = {'PORTOFOLIO'}
-        small = {'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'}
-        img = {portofolio}
-        text={'PORTOFOLIO'}
-        />
-            {imgl = img_list.map(image =>
-                 <Portofolio_item1
-                img = {menuItem.img}
-                name = {menuItem.name}
-                profession = {menuItem.profession}
-                main_img ={image.img}
-                flexdDirection = {image.flexdDirection}
-                big={image.big}
-                left = {image.left}
-                right = {image.right}
-        />
-
-            )}
-            <About_main_3 paddingTop = {80} big ={'Why Choose Us'} text={'SERVICE'}/>
-            <About_main_4/>
-       
-        
+         
             
         </div>
         
@@ -59,4 +35,4 @@ function Portofolio(all) {
   );
 }
 
-export default Portofolio;
+export default Progect;

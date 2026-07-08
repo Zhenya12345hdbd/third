@@ -1,0 +1,19 @@
+.project{
+    display: flex;
+    flex-direction: row;
+    width: 1200px;
+    gap: 32px;
+    margin-bottom: 82px;
+}
+.project_1_left{
+    width: 584px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.project_date{
+    display: flex;
+    flex-direction: row;
+    gap:80px;
+    margin-top: 32px;
+}

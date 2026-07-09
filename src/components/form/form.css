@@ -30,19 +30,29 @@ height: 62px;
 border: 1px solid #9C9C9C;
 
 
-
 }
 .input_big{
 width: 840px;
 height: 62px;
 border: 1px solid #9C9C9C;
 }
+.input_big:focus, .input_small:focus{
+padding-left: 20px;
+font-family: 'Poppins-Regular';
+font-weight: 400;
+font-size: 18px;
+line-height: 160%;
+color: #9C9C9C;
+}
+
 .input_area{
 width: 840px;
 height: 178px;
 border: 1px solid #9C9C9C;
 padding-bottom: 100px;
+
 }
+
 
 
 .input_area:focus{

@@ -6,10 +6,37 @@ import instagram from './/instagram.png'
 import tiktok from './/tiktok.png'
 import youtube from './/youtube.png'
 import arr from '../servise/arrow-right.png'
+import { useState } from 'react'
+import axios from 'axios'
 
 
 
 function Footer_last() {
+  const [ email , setEmail] = useState({email : ''})
+  const [status, setStatus] = useState(null);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setEmail((prev) => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+     try {
+      const response = await axios.post('https://your-api.com/api/submit', setEmail);
+      console.log('Ответ сервера:', response.data);
+      setStatus('success');
+      // Опционально: очистить форму
+      setEmail({ name: '', email: '', message: '' });
+    } catch (error) {
+      console.error('Ошибка отправки:', error);
+      setStatus('error');
+    }
+  };
+
+
+
     
   return (
     <section>
@@ -24,8 +51,8 @@ function Footer_last() {
             <p>
                 <span></span>Enter  your email to get the laterst news
             </p>
-                <input type="email" placeholder='Email Address'/>
-                <img src={arr} className='arr' alt="" />
+                <input type="email" value={email} onChange={handleChange} placeholder='Email Address'/>
+                <img src={arr} className='arr' alt="" onClick={handleSubmit} />
                 <div className='last_social'>
                     <p>
                         Follow us On

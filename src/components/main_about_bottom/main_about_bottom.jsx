@@ -23,6 +23,7 @@ function Main_about_bottom() {
                 name = {'Arga Danaan'}
                 profession = {'CEO of Dananz'}
                 img = {person}
+                right = {'150px'}
                 />
                 
                 <div className='Main_about_bottom_text'>

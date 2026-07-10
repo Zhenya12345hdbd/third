@@ -1,0 +1,78 @@
+import React, { useState } from 'react';
+import axios from 'axios';
+
+const FormExample = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+  });
+  const [response, setResponse] = useState(null);
+  const [error, setError] = useState(null);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setResponse(null);
+    setError(null);
+
+    try {
+      const res = await axios.post('http://localhost:3001/users', formData);
+      setResponse(res.data); // сервер вернёт созданный объект с id
+    } catch (err) {
+      setError(err.response?.data || err.message || 'Ошибка отправки');
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <h2>Отправить форму на JSON Server</h2>
+
+      <div>
+        <label>
+          Имя:
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </label>
+      </div>
+
+      <div>
+        <label>
+          Email:
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </label>
+      </div>
+
+      <button type="submit">Отправить</button>
+
+      {response && (
+        <div style={{ marginTop: 20, padding: 10, background: '#eef', borderRadius: 4 }}>
+          <p>Успешно! Сервер вернул:</p>
+          <pre>{JSON.stringify(response, null, 2)}</pre>
+        </div>
+      )}
+
+      {error && (
+        <div style={{ marginTop: 20, padding: 10, background: '#fee", borderRadius: 4, color: 'red' }}>
+          Ошибка: {String(error)}
+        </div>
+      )}
+    </form>
+  );
+};
+
+export default FormExample;

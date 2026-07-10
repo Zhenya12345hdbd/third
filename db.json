@@ -1,0 +1,23 @@
+{
+  "email": [
+    {
+      "name": "gggg",
+      "email": "gggg@aaa.com",
+      "id": "TBHantkhb3g"
+    },
+    {
+      "name": "gggg",
+      "email": "fbgsdfvbuy@sdygvyv.ru",
+      "id": "23Jg-ICGe2s"
+    },
+    {
+      "email": "abarov.zhenya@gmail.com",
+      "id": "zwSz2DI-xCs"
+    },
+    {
+      "email": "abarov.zhenya@gmail.com",
+      "id": "DGF-VZDQ1B0"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

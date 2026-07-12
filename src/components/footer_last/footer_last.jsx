@@ -38,7 +38,6 @@ function Footer_last() {
   };
 
 
-
     
   return (
     <section>
@@ -53,6 +52,7 @@ function Footer_last() {
             <p>
                 <span></span>Enter  your email to get the laterst news
             </p>
+
                 <input type="email" name='email' value={formData.email} onChange={handleChange} placeholder='Email Address'/>
                 <img src={arr} className='arr' alt="" onClick={handleSubmit} />
                 <div className='last_social'>

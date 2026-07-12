@@ -17,6 +17,10 @@
     {
       "email": "abarov.zhenya@gmail.com",
       "id": "DGF-VZDQ1B0"
+    },
+    {
+      "email": "abarovanatalya@yandex.ru",
+      "id": "hoowyPsre80"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

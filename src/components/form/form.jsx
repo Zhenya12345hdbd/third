@@ -2,8 +2,16 @@ import './form.css'
 import { useState } from 'react'
 import axios from 'axios'
 
+let display = 'none'
+
 function Form() {
+
+
     const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+    const [phone, setPhone] = useState('');
+    const [name, setName] = useState('');
+
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -13,6 +21,10 @@ function Form() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(value);
   };
+  const validatePhone = (value) => {
+    const phoneRegex = /^[\d\+][\d\(\)\ -]{4,14}\d$/;
+    return phoneRegex.test(value);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,9 +32,16 @@ function Form() {
     setSuccess(false);
     setLoading(true);
 
-    if (!validateEmail(email)) {
+    if (!validateEmail(email) ) {
       setError('Пожалуйста, введите корректный email-адрес.');
       setLoading(false);
+      display = 'block'
+      return;
+    }
+    if (!validatePhone(phone) ) {
+      setError('Пожалуйста, введите корректный номер телефона.');
+      setLoading(false);
+      display = 'block'
       return;
     }
 
@@ -30,11 +49,14 @@ function Form() {
       // Отправка данных на JSON Server
        await axios.post('http://localhost:3001/email', {
         email: email,
+        message : message,
+        phone : phone,
         timestamp: new Date().toISOString(),
       });
 
       setSuccess(true);
       setEmail(''); // Очистить поле
+      display = 'none'
     } catch (err) {
       console.error('Ошибка отправки:', err);
       setError('Не удалось отправить данные. Попробуйте позже.');
@@ -61,17 +83,23 @@ function Form() {
                 <form>
                     <label htmlFor="email" className='form_label_text'>Email</label>
                     <input type='email' id="email"
-          type="email"
-          value={email}
-          name= 'email'
-          onChange={(e) => setEmail(e.target.value)} className='input_big' placeholder='Email' name='email'/>
-          {error && <p style={{ color: 'red', marginBottom: '10px' }}>{error}</p>}
-      {success && <p style={{ color: 'green', marginBottom: '10px' }}>Email успешно отправлен!</p>}
+                                  type="email"
+                                  value={email}
+                                  name= 'email'
+                                  onChange={(e) => setEmail(e.target.value)} className='input_big' placeholder='Email' name='email'/>
+                                  
+          {<p style={{ color: 'red', marginBottom: '10px' , display : display,}}>Пожалуйста, введите корректный email-адрес.</p>}
+          {success && <p style={{ color: 'green', marginBottom: '10px' }}>Email успешно отправлен!</p>}
                 </form>
 
                 <form>
                     <label htmlFor="phone" className='form_label_text'>Phone Number</label>
-                    <input type='tel' className='input_big' placeholder='Phone' name='phone'/>
+                    <input type='tel'
+                                    value={phone}
+                                    name= 'phone'
+                                    onChange={(e) => setPhone(e.target.value)} className='input_big' placeholder='Phone' name='phone'/>
+                    {<p style={{ color: 'red', marginBottom: '10px' ,display : display,}}>Пожалуйста, введите корректный номер телефона в формате 999999999.</p>}
+                    {success && <p style={{ color: 'green', marginBottom: '10px' }}>Email успешно отправлен!</p>}
                 </form>
                 
                     <form>

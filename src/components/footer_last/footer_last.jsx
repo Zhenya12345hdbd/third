@@ -7,35 +7,54 @@ import tiktok from './/tiktok.png'
 import youtube from './/youtube.png'
 import arr from '../servise/arrow-right.png'
 import { useState } from 'react'
-import axios from 'axios';
+import axios from 'axios'
+
+
 
 
 
 function Footer_last() {
 
-  const [formData, setFormData] = useState({
-    email: '',
-  });
-  const [response, setResponse] = useState(null);
-  const [error, setError] = useState(null);
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+  // Простая валидация email через регулярное выражение
+  const validateEmail = (value) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setResponse(null);
-    setError(null);
+    setError('');
+    setSuccess(false);
+    setLoading(true);
+
+    if (!validateEmail(email)) {
+      setError('Пожалуйста, введите корректный email-адрес.');
+      setLoading(false);
+      return;
+    }
 
     try {
-      const res = await axios.post('http://localhost:3001/email', formData);
-      setResponse(res.data); // сервер вернёт созданный объект с id
+      // Отправка данных на JSON Server
+       await axios.post('http://localhost:3001/email', {
+        email: email,
+        timestamp: new Date().toISOString(),
+      });
+
+      setSuccess(true);
+      setEmail(''); // Очистить поле
     } catch (err) {
-      setError(err.response?.data || err.message || 'Ошибка отправки');
+      console.error('Ошибка отправки:', err);
+      setError('Не удалось отправить данные. Попробуйте позже.');
+    } finally {
+      setLoading(false);
     }
   };
+ 
 
 
     
@@ -52,9 +71,13 @@ function Footer_last() {
             <p>
                 <span></span>Enter  your email to get the laterst news
             </p>
-
-                <input type="email" name='email' value={formData.email} onChange={handleChange} placeholder='Email Address'/>
+                <input id="email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)} placeholder='Email Address'/>
                 <img src={arr} className='arr' alt="" onClick={handleSubmit} />
+                {error && <p style={{ color: 'red', marginBottom: '10px' }}>{error}</p>}
+      {success && <p style={{ color: 'green', marginBottom: '10px' }}>Email успешно отправлен!</p>}
                 <div className='last_social'>
                     <p>
                         Follow us On

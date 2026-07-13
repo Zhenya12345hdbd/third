@@ -1,64 +1,24 @@
 {
   "email": [
     {
-      "name": "gggg",
-      "email": "gggg@aaa.com",
-      "id": "TBHantkhb3g"
-    },
-    {
-      "name": "gggg",
-      "email": "fbgsdfvbuy@sdygvyv.ru",
-      "id": "23Jg-ICGe2s"
+      "email": "abarov.zhenya@gmail.com",
+      "timestamp": "2026-07-13T13:24:26.840Z",
+      "id": "fJftGELiQdE"
     },
     {
       "email": "abarov.zhenya@gmail.com",
-      "id": "zwSz2DI-xCs"
+      "timestamp": "2026-07-13T13:39:41.439Z",
+      "id": "hwPBgU7gTHo"
     },
     {
       "email": "abarov.zhenya@gmail.com",
-      "id": "DGF-VZDQ1B0"
-    },
-    {
-      "email": "abarovanatalya@yandex.ru",
-      "id": "hoowyPsre80"
+      "timestamp": "2026-07-13T13:41:49.759Z",
+      "id": "g2A8KWxQjS4"
     },
     {
       "email": "abarov.zhenya@gmail.com",
-      "id": "RRdqhbvFL0M"
-    },
-    {
-      "email": "ab",
-      "id": "sM7hb7vRuPk"
-    },
-    {
-      "email": "abarov.zhenya@gmail.com",
-      "id": "9QOVUmSeuIM"
-    },
-    {
-      "email": "abarov.zhenya@gmail.com",
-      "id": "0eHrg77ITPE"
-    },
-    {
-      "email": "abarov.zhenya@gmail.com",
-      "id": "ckRMUd8eQ20"
-    },
-    {
-      "email": "abarov.zhenya@gmail.com",
-      "id": "4QHcoqz5dp4"
-    },
-    {
-      "email": "abarov.zhenya@gmail.com",
-      "id": "cOACnU9jhWk"
-    },
-    {
-      "email": "abarov.zhenya@gmail.com",
-      "timestamp": "2026-07-13T10:14:15.428Z",
-      "id": "wjZFIoPzeb4"
-    },
-    {
-      "email": "abarov.zhfffffenya@gmail.com",
-      "timestamp": "2026-07-13T10:14:24.508Z",
-      "id": "lugeRnB6Zdg"
+      "timestamp": "2026-07-13T13:42:35.863Z",
+      "id": "3iEGw0aR7Mg"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -2,91 +2,44 @@
   "email": [
     {
       "email": "abarov.zhenya@gmail.com",
-      "timestamp": "2026-07-13T13:24:26.840Z",
-      "id": "fJftGELiQdE"
+      "phone": "+79066670181",
+      "id": "2DBsBrfgjng"
     },
     {
+      "last_name": "ddddddddd",
       "email": "abarov.zhenya@gmail.com",
-      "timestamp": "2026-07-13T13:39:41.439Z",
-      "id": "hwPBgU7gTHo"
+      "phone": "+79066670181",
+      "id": "05Wtgt78Dvg"
     },
     {
+      "last_name": "fffff",
       "email": "abarov.zhenya@gmail.com",
-      "timestamp": "2026-07-13T13:41:49.759Z",
-      "id": "g2A8KWxQjS4"
+      "phone": "+79066670181",
+      "id": "uiGJnKA2B90"
     },
     {
+      "name": "aaaaa",
+      "last_name": "aaaaa",
       "email": "abarov.zhenya@gmail.com",
-      "timestamp": "2026-07-13T13:42:35.863Z",
-      "id": "3iEGw0aR7Mg"
+      "phone": "+79066670181",
+      "message": "kglfufuuyguygyg",
+      "id": "ElEc6sEYSm4"
     },
     {
-      "email": "abarovanatalya@yandex.ru",
-      "timestamp": "2026-07-13T16:14:40.174Z",
-      "id": "FlPowGGFqsM"
+      "name": "ggggf",
+      "last_name": "fffffff",
+      "email": "abarov.zhenya@gmail.com",
+      "phone": "+79066670181",
+      "message": "ffffffffffffffffffffff",
+      "id": "62PRdlgfvRU"
     },
     {
-      "email": "abarovanatalya@yandex.ru",
-      "message": "",
-      "phone": "9066670181",
-      "timestamp": "2026-07-13T17:56:59.908Z",
-      "id": "9RrtZm_tyBY"
-    },
-    {
-      "email": "abarovanatalya@yandex.ru",
-      "message": "",
-      "phone": "888888888",
-      "timestamp": "2026-07-13T17:59:06.760Z",
-      "id": "ZJrIm7G5u10"
-    },
-    {
-      "email": "abarovanatalya@yandex.ru",
-      "message": "",
-      "phone": "9066670181",
-      "timestamp": "2026-07-13T18:02:59.711Z",
-      "id": "3OcIDnLQlo8"
-    },
-    {
-      "email": "abarovanatalya@yandex.ru",
-      "message": "",
-      "phone": "9066670181",
-      "timestamp": "2026-07-13T18:08:38.012Z",
-      "id": "NdKV6SUMX9o"
-    },
-    {
-      "email": "abarovanatalya@yandex.ru",
-      "message": "",
-      "phone": "9066670181",
-      "timestamp": "2026-07-13T18:09:21.935Z",
-      "id": "eqgqEsytAMk"
-    },
-    {
-      "email": "abarovanatalya@yandex.ru",
-      "message": "",
-      "phone": "888888888",
-      "timestamp": "2026-07-13T18:11:34.239Z",
-      "id": "d5odakad8Cs"
-    },
-    {
-      "email": "abarovanatalya@yandex.ru",
-      "message": "",
-      "phone": "88888888",
-      "timestamp": "2026-07-13T18:11:44.598Z",
-      "id": "2TWq4QJFheQ"
-    },
-    {
-      "email": "abarovanatalya@yandex.ru",
-      "message": "",
-      "phone": "8888888",
-      "timestamp": "2026-07-13T18:11:55.462Z",
-      "id": "W47TGm3-7Cg"
-    },
-    {
-      "email": "abarovanatalya@yandex.ru",
-      "message": "",
-      "phone": "888888",
-      "timestamp": "2026-07-13T18:12:01.276Z",
-      "id": "qHWpgNusxqU"
+      "name": "наталья",
+      "last_name": "Абарова",
+      "email": "abarov.zhenya@gmail.com",
+      "phone": "+79066670181",
+      "message": "ffffffffff",
+      "id": "Bh10MF4ql3w"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

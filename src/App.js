@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 import { menu_about } from "./components/all_component_top/about_data";
 import Portofolio from "./pages/portofolio";
 import Progect from "./pages/prigect";
+import Admin from "./pages/admin";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
       <Header/>
       <Routes>
          <Route path="/" element={<Main_Page/>}/>
+          <Route path="/Admin" element={<Admin/>}/>
          <Route path="/:path" element={<About />}/>
          <Route path="/Our/:item" element={<Portofolio/>}/>
           <Route path="/Our/:item/:project" element={<Progect/>}/>

@@ -14,6 +14,7 @@ function Header() {
     <section>
         <header>
         <Link to="/"><img src={logo} alt="" /></Link>
+        <Link to="/Admin">admin</Link>
         <div className='menu'>
             {menulis = menu.map(men =>
                  <NavLink to={men.path} className='menu-item'>{men.item}</NavLink>

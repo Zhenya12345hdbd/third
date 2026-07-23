@@ -6,32 +6,38 @@ import { useForm } from 'react-hook-form';
 
 
 function Form() {
-     const { register, handleSubmit, formState: { errors } } = useForm();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [message, setMessage] = useState('');
+ 
 
+  // Инициализация хука формы
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
+
+  // Функция обработки успешной отправки
   const onSubmit = async (data) => {
-    setIsSubmitting(true);
-    setMessage('');
-
     try {
-      const response = await axios.post('http://localhost:3001/email', data);
-      setMessage(`Форма успешно отправлена! ID: ${response.data.id}`);
+      // Отправка POST запроса на PHP скрипт
+      /* const response = await axios.post('http://q90828s0.beget.tech/api/form.php', data); */
+      const response = await axios.post('/api/form.php', data);
+      
+      if (response.data.success) {
+        alert('Данные успешно сохранены!');
+        reset(); // Очистка формы
+      } else {
+        alert('Ошибка на сервере: ' + response.data.message);
+      }
     } catch (error) {
-      console.error('Ошибка отправки:', error);
-      setMessage('Ошибка при отправке формы. Попробуйте позже.');
-    } finally {
-      setIsSubmitting(false);
+      console.error('Ошибка сети:', error);
+      alert('Произошла ошибка соединения с сервером.');
     }
   };
 
 
   return (
     <section>
-       <div className='container form'>
-            <div className='form_top'>
-                <form action="" >
-                    <label htmlFor="name" className='form_label_text'>First Name</label>
+        <div className='container form'>
+           <form onSubmit={handleSubmit(onSubmit)}>
+                  <div className='form_top'>
+                    <div>
+                           <label htmlFor="name" className='form_label_text'>First Name</label>
                     <input type='text'   {...register('name', {
                             required: 'Введите ваше имя',
                             pattern: {
@@ -47,11 +53,11 @@ function Form() {
                             }, 
                     
                     })} 
-                     className='input_small' placeholder='First Name' name='name'/>
+                     className='input_small' placeholder='First Name'/>
                      {errors.name && <span style={{ color: 'red' }}>{errors.name.message}</span>}
-                </form>
-                <form>
-                    <label htmlFor="last_name" className='form_label_text'>LAst Name</label>
+                    </div>
+                   <div >
+                        <label htmlFor="last_name" className='form_label_text'>LAst Name</label>
                     <input type='text'   {...register('last_name', {
                             required: 'Введите вашу фамилию',
                             pattern: {
@@ -67,13 +73,15 @@ function Form() {
                              message: 'Слишком длинное фамилия'
                             },  
                         })} 
-                     className='input_small' placeholder='Last Name' name='last_name'/>
+                     className='input_small' placeholder='Last Name'/>
                      {errors.last_name && <span style={{ color: 'red' }}>{errors.last_name.message}</span>}
-                </form>
+                   </div>
                 
-            </div>
+                    
+                
+                
+                  </div>
             <div className='form_bottom'>
-                <form>
                     <label htmlFor="email"  className='form_label_text'>Email</label>
                     <input type='email' {...register('email', {
                             required: 'Email обязателен',
@@ -82,9 +90,8 @@ function Form() {
                             message: 'Некорректный email'
                             }})} className='input_big' placeholder='Email' name='email'/>
                             {errors.email && <span style={{ color: 'red' }}>{errors.email.message}</span>}
-                </form>
-
-                <form>
+                
+                 
                     <label htmlFor="phone" className='form_label_text'>Phone Number</label>
                     <input type='tel' {...register('phone', {
                             required: 'телефонт обязателен',
@@ -96,8 +103,8 @@ function Form() {
                             }})} className='input_big' placeholder='Phone' name='phone'/>
                             {errors.phone && <span style={{ color: 'red' }}>{errors.phone.message}</span>}
                    
-                </form>
-                    <form>
+                 
+                     
                         <label htmlFor="message" className='form_label_text'>First Name</label>
                         <input type='text'  {...register('message', {
                             required: 'Напишите что_нибудь',
@@ -111,11 +118,11 @@ function Form() {
                            
                            })}   className='input_area' placeholder='Message' name='message'/>
                             {errors.message && <span style={{ color: 'red' }}>{errors.message.message}</span>}
-                    </form>
-                <button  type="submit" onClick={handleSubmit(onSubmit)} className='button pos'>Send Massage</button>
+                     
+                <button  type="submit" className='button pos'>Send Massage</button>
             </div>
-
-       </div>
+        </form>
+    </div>
     </section>
     
   );

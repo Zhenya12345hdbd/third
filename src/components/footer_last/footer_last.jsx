@@ -8,6 +8,7 @@ import youtube from './/youtube.png'
 import arr from '../servise/arrow-right.png'
 import { useState } from 'react'
 import axios from 'axios'
+import { useForm } from 'react-hook-form'
 
 
 
@@ -15,43 +16,27 @@ import axios from 'axios'
 
 function Footer_last() {
 
-  const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false);
-  const [loading, setLoading] = useState(false);
+ 
 
-  // Простая валидация email через регулярное выражение
-  const validateEmail = (value) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(value);
-  };
+  // Инициализация хука формы
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
-    setSuccess(false);
-    setLoading(true);
-
-    if (!validateEmail(email)) {
-      setError('Пожалуйста, введите корректный email-адрес.');
-      setLoading(false);
-      return;
-    }
-
+  // Функция обработки успешной отправки
+  const onSubmit1 = async (data) => {
     try {
-      // Отправка данных на JSON Server
-       await axios.post('http://localhost:3001/email', {
-        email: email,
-        timestamp: new Date().toISOString(),
-      });
-
-      setSuccess(true);
-      setEmail(''); // Очистить поле
-    } catch (err) {
-      console.error('Ошибка отправки:', err);
-      setError('Не удалось отправить данные. Попробуйте позже.');
-    } finally {
-      setLoading(false);
+      // Отправка POST запроса на PHP скрипт
+      /* const response1 = await axios.post('http://q90828s0.beget.tech/save.php', data); */
+      const response1 = await axios.post('http://localhost/save.php', data);
+      
+      if (response1.data.success) {
+        alert('Данные успешно сохранены!');
+        reset(); // Очистка формы
+      } else {
+        alert('Ошибка на сервере: ' + response1.data.message);
+      }
+    } catch (error) {
+      console.error('Ошибка сети:', error);
+      alert('Произошла ошибка соединения с сервером.');
     }
   };
  
@@ -71,13 +56,23 @@ function Footer_last() {
             <p>
                 <span></span>Enter  your email to get the laterst news
             </p>
-                <input id="email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)} placeholder='Email Address'/>
-                <img src={arr} className='arr' alt="" onClick={handleSubmit} />
-                {error && <p style={{ color: 'red', marginBottom: '10px' }}>{error}</p>}
-      {success && <p style={{ color: 'green', marginBottom: '10px' }}>Email успешно отправлен!</p>}
+            <form onSubmit={handleSubmit(onSubmit1)}>
+             <input type='email' {...register('emailForPost', {
+                            required: 'Email обязателен',
+                            pattern: {
+                            value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,}$/,
+                            message: 'Некорректный email'
+                            }})} placeholder='Email'  />
+                            {errors.name && <span style={{ color: 'red' }}>{errors.name.message}</span>}
+                           
+                
+                <button type="submit"> 
+                   <img  src={arr} className='arr' alt=""  />
+          
+                </button>
+                
+            </form>
+                
                 <div className='last_social'>
                     <p>
                         Follow us On

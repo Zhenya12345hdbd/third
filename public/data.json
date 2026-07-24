@@ -1,62 +1,13 @@
- [
+[
     {
-      "name": "наталья",
-      "last_name": "Абарова",
-      "email": "abarov.zhenya@gmail.com",
-      "phone": "+79066670181",
-      "message": "ffffffffff",
-      "id": "Bh10MF4ql3w"
+        "emailForPost": "abarov.zhenya@gmail.com",
+        "date": "2026-07-24 15:53:17",
+        "id": "6a63603d3a616"
     },
     {
-      "email": "abarov.zhenya@gmail.com",
-      "timestamp": "2026-07-14T12:46:57.765Z",
-      "id": "AeGm10hdJC8"
-    },
-    {
-      "email": "abarov.zhenya@gmail.com",
-      "timestamp": "2026-07-16T08:15:38.062Z",
-      "id": "qp7ea0i5KIk"
-    },
-    {
-      "name": "наталья",
-      "last_name": "Абарова",
-      "email": "abarov.zhenya@gmail.com",
-      "phone": "+79066670181",
-      "message": "вааааааааа",
-      "id": "CRs2ahi4lZE"
-    },
-    {
-      "name": "наталgfggggья",
-      "last_name": "Абарggggова",
-      "email": "abarov.zhenya@gmail.com",
-      "phone": "+79066670181",
-      "message": "вааааааааа",
-      "id": "CRs2ahi4lZE"
-    },
-     {
-      "name": "наталgfggggья1111",
-      "last_name": "Абарggggова1111",
-      "email": "abarov.zhenya@gmail.com",
-      "phone": "+79066670181",
-      "message": "вааааааааа",
-      "id": "CRs2ahi4lZE"
-    },
-    {
-      "name": "наталgfggggья1111",
-      "last_name": "Абарggggова1111",
-      "email": "abarov.zhenya@gmail.com",
-      "phone": "+79066670181",
-      "message": "вааааааааа",
-      "id": "CRs2ahi4lZE"
-    },
-      {
-      "name": "наталgfggggья1111",
-      "last_name": "Абарggggова1111",
-      "email": "abarov.zhenya@gmail.com",
-      "phone": "+79066670181",
-      "message": "вааааааааа",
-      "id": "CRs2ahi4lZE"
+        "emailForPost": "abarov.zhenya@gmail.com",
+        "date": "2026-07-24 15:53:20",
+        "id": "6a636040db378"
     }
-      
-  ]
+]
 

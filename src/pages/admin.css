@@ -4,11 +4,13 @@
     width: 1200px;
     flex-direction: row;
     gap: 20%;
+    padding-bottom: 50px;
 }
 .spread,.input_form{
     width: 40%;
     display: flex;
     flex-direction: column;
+    gap: 10px;
 
 }
 .admin_items{
@@ -16,7 +18,7 @@
     padding: 10px;
     border: 1px solid gray;
     border-radius: 5px;
-    height: 50px;
+    height: 80px;
 }
 .buttons{
     margin-top: 30px;
@@ -24,4 +26,7 @@
     flex-direction: row;
     justify-content:space-around;
     margin-bottom: 50px;
+}
+.adm_but{
+    padding: 5px;
 }

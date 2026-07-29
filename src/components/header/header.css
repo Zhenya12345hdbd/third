@@ -25,3 +25,11 @@ letter-spacing: 0px;
     padding: 14px 32px;
     background-color: #2C3878;
 }
+.admin_link{
+    width: 40px;
+    height: 40px;
+
+}
+.admin_link:hover{
+   background-color: red;
+}

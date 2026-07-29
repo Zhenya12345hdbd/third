@@ -173,7 +173,7 @@ const handleLogin = async (e) => {
        <div className='information'>
           <div className='information_first_form'>
             
-              <h1>Подписались на рассылку</h1>
+              <h1 className='black_text_middle'>Подписались на рассылку</h1>
               <div className='rass'>
                 {items && items.map((item, index) => (
                   <div key={index} className='admin_items admin_small_items'>
@@ -192,7 +192,7 @@ const handleLogin = async (e) => {
         </div>
         
         <div className='information_main_form'>
-                  <h1>Форма для связи</h1>
+                  <h1 className='black_text_middle'>Форма для связи</h1>
                   <div className='rass'>
                 {items1 && items1.map((item1, index1) => (
                   <div key={index1} className='admin_items '>

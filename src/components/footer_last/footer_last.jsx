@@ -25,8 +25,8 @@ function Footer_last() {
   const onSubmit1 = async (data) => {
     try {
       // Отправка POST запроса на PHP скрипт
-      /* const response1 = await axios.post('http://q90828s0.beget.tech/save.php', data); */
-      const response1 = await axios.post('http://project/save.php', data);
+      const response1 = await axios.post('http://q90828s0.beget.tech/save.php', data);
+      /* const response1 = await axios.post('http://project/save.php', data); */
       
       if (response1.data.success) {
         alert('Данные успешно сохранены!');

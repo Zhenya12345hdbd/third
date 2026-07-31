@@ -27,7 +27,7 @@ const [user, setUser] = useState(null);
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/data.json?t=' + new Date().getTime());
+      const res = await fetch('http://q90828s0.beget.tech/data.json?t=' + new Date().getTime());
       if (!res.ok) throw new Error('Network error');
       const result = await res.json();
       setItems(result);
@@ -41,10 +41,10 @@ const [user, setUser] = useState(null);
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/form.json?t=' + new Date().getTime());
+      const res = await fetch('http://q90828s0.beget.tech/api/form.json?t=' + new Date().getTime());
       if (!res.ok) throw new Error('Network error');
       const result1 = await res.json();
-      setItems1(result1.slice(result1.length - 4, result1.length));
+      setItems1(result1.slice(result1.length - 6, result1.length));
     } catch (err) {
       setError(err);
     } finally {
@@ -53,7 +53,7 @@ const [user, setUser] = useState(null);
   };
   const checkAuth = async () => {
   try {
-    const res = await fetch('http://project/login.php', {
+    const res = await fetch('http://q90828s0.beget.tech/login.php', {
       method: 'GET',
       credentials: 'include', // <-- важно: отправляет куки (сессию)
     });
@@ -83,13 +83,16 @@ const [user, setUser] = useState(null);
     fetchData1();
     
   }, []);
-
+const handleRefresh = () => {
+  fetchData();
+  fetchData1();
+};
   if (loading) return <div>Загрузка...</div>;
   if (error) return <div>Ошибка загрузки: {error.message}</div>;
 
  const handleDelete = async (id) => {
   try {
-    const res = await fetch('http://project/handler.php', {
+    const res = await fetch('http://q90828s0.beget.tech/handler.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id }),
@@ -101,10 +104,24 @@ const [user, setUser] = useState(null);
     console.error(err);
   }
 };
+const handleDelete1 = async (id) => {
+  try {
+    const res = await fetch('http://q90828s0.beget.tech/handler1.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id }),
+    });
+    if (!res.ok) throw new Error('Ошибка при удалении');
+    await res.json();
+    fetchData1();
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 const handleLogin = async (e) => {
     e.preventDefault();
-    const res = await fetch('http://project/login.php', {
+    const res = await fetch('http://q90828s0.beget.tech/login.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ login, password }),
@@ -117,6 +134,7 @@ const handleLogin = async (e) => {
       setLogin('');
       setPassword('');
       setMessage('');
+      handleRefresh();
     } else {
       setMessage(data.message || 'Ошибка авторизации');
     }
@@ -124,7 +142,7 @@ const handleLogin = async (e) => {
 
   
    const handleLogout = async () => {
-    await fetch('http://project/logout.php', { 
+    await fetch('http://q90828s0.beget.tech/logout.php', { 
         method: 'GET',
         credentials: 'include' // <-- Обязательно!
     });
@@ -132,6 +150,7 @@ const handleLogin = async (e) => {
     // Очистить items, если они приватные
     setItems(null); 
   };
+  
 
 
 
@@ -142,34 +161,38 @@ const handleLogin = async (e) => {
     <div className='autorisation_form'>
       {user ? (
         <div>
-          <p>Вы авторизованы как: <b>{user}</b></p>
-          <button onClick={handleLogout}>Выйти</button>
+          <p className='black_text_middle'>Вы авторизованы как: <b>{user}</b></p>
+          <button className='form_label_text' onClick={handleLogout}>Выйти</button>
         </div>
       ) : (
+        
         <form onSubmit={handleLogin}>
-          <div style={{ marginBottom: '8px' }}>
-            <label>Логин: </label>
+          <h1 className='black_text_middle'>Авторизируйтесь</h1>
+          <div className='admin_form' style={{ marginBottom: '8px' }}>
+            <label className='form_label_text'>Логин: </label>
             <input
               value={login}
               onChange={(e) => setLogin(e.target.value)}
               required
+              className='input_small'
             />
           </div>
-          <div style={{ marginBottom: '8px' }}>
-            <label>Пароль: </label>
+          <div className='admin_form' style={{ marginBottom: '8px' }}>
+            <label className='form_label_text'>Пароль: </label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              className='input_small'
             />
           </div>
           {message && <p style={{ color: 'red' }}>{message}</p>}
-          <button type="submit">Войти</button>
+          <button type="submit" className='form_label_text' >Войти</button>
         </form>
       )}
     </div>
-    {!user ? (
+    {user ? (
        <div className='information'>
           <div className='information_first_form'>
             
@@ -205,7 +228,7 @@ const handleLogin = async (e) => {
                    <div className='line_admin_form message'><p className='black_text_middle'>Сообщение</p> <p className='gray_small'>{item1.message}</p></div>
                   <button
                     className='button adm_but'
-                    onClick={() => handleDelete(item1.id)}
+                    onClick={() => handleDelete1(item1.id)}
                   >
                     Удалить
                     </button>
@@ -215,11 +238,11 @@ const handleLogin = async (e) => {
         </div>
     
         
-
+      <button className='button admin_button' onClick={handleRefresh}>Обновить</button>
         </div>
          
         ):(<></>)}
-        <button className='button admin_button' onClick={fetchData}>Обновить</button>
+        
         
        
     </div>

@@ -78,3 +78,12 @@
 .admin_button{
     align-self: center;
 }
+.admin_form{
+    display: flex;
+    width: 500px;
+    justify-content: space-between;
+    align-items: center;
+}
+.autorisation_form{
+    margin: auto;
+}

@@ -109,7 +109,7 @@ function Form() {
                         <input type='text'  {...register('message', {
                             required: 'Напишите что_нибудь',
                             pattern: {
-                            value: /^[а-яёА-ЯЁ]+$/,
+                            value: /^[\p{Script=Cyrillic}\s\p{P}]+$/u,
                            },
                            minLength: {
                                 value :10,

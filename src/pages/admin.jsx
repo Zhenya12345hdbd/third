@@ -12,6 +12,7 @@ let menulis
 function Admin() {
   const [items, setItems] = useState(null); 
   const [items1, setItems1] = useState(null);// Переименовали data в items для ясности
+  const [items2, setItems2] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -19,6 +20,12 @@ const [user, setUser] = useState(null);
   const [message, setMessage] = useState('');
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
+  const [currentPage, setCurrentPage] = useState(1); // Текущая страница
+const ITEMS_PER_PAGE = 6;
+const totalPages = Math.ceil((items1 ? items1.length : 0) / ITEMS_PER_PAGE);
+
+const [isBlinking, setIsBlinking] = useState(true);
+
 
 
 
@@ -27,7 +34,8 @@ const [user, setUser] = useState(null);
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('http://q90828s0.beget.tech/data.json?t=' + new Date().getTime());
+      /* const res = await fetch('http://q90828s0.beget.tech/data.json?t=' + new Date().getTime()); */
+      const res = await fetch('/data.json?t=' + new Date().getTime());
       if (!res.ok) throw new Error('Network error');
       const result = await res.json();
       setItems(result);
@@ -38,19 +46,34 @@ const [user, setUser] = useState(null);
     }
   };
   const fetchData1 = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await fetch('http://q90828s0.beget.tech/api/form.json?t=' + new Date().getTime());
-      if (!res.ok) throw new Error('Network error');
-      const result1 = await res.json();
-      setItems1(result1.slice(result1.length - 6, result1.length));
-    } catch (err) {
-      setError(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+  setLoading(true);
+  setError(null);
+  try {
+    const res = await fetch('/api/form.json?t=' + new Date().getTime());
+    if (!res.ok) throw new Error('Network error');
+    const result1 = await res.json();
+    
+   const sorted = [...result1].sort((b, a) =>
+          new Date(a.date) - new Date(b.date)
+        );
+    setItems1(sorted); 
+    
+  } catch (err) {
+    setError(err);
+  } finally {
+    setLoading(false);
+  }
+};
+
+const getPaginatedItems = () => {
+  if (!items1) return [];
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  return items1.slice(startIndex, endIndex);
+};
+
+// Функция для расчета общего количества страниц
+
   const checkAuth = async () => {
   try {
     const res = await fetch('http://q90828s0.beget.tech/login.php', {
@@ -150,11 +173,6 @@ const handleLogin = async (e) => {
     // Очистить items, если они приватные
     setItems(null); 
   };
-  
-
-
-
-  
   return (
   <section>
     <div className='container admin'>
@@ -192,7 +210,7 @@ const handleLogin = async (e) => {
         </form>
       )}
     </div>
-    {user ? (
+    {!user ? (
        <div className='information'>
           <div className='information_first_form'>
             
@@ -217,24 +235,48 @@ const handleLogin = async (e) => {
         <div className='information_main_form'>
                   <h1 className='black_text_middle'>Форма для связи</h1>
                   <div className='rass'>
-                {items1 && items1.map((item1, index1) => (
+                {getPaginatedItems().map((item1, index1) => (
                   <div key={index1} className='admin_items '>
                     <div className='line_admin_form'><p className='black_text_middle'>Дата</p> <p className='gray_small'>{item1.date}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'> Имя:</p> <p className='gray_small'>{item1.name}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'>Фамилия:</p> <p className='gray_small'>{item1.last_name}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'>Email:</p> <p className='gray_small'>{item1.email}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'>Телефон</p> <p className='gray_small'>{item1.phone}</p></div>
+                   <div className='line_admin_form'><p className='black_text_middle'>Статус</p> <p className='in_work'>{item1.status}</p></div>
 
                    <div className='line_admin_form message'><p className='black_text_middle'>Сообщение</p> <p className='gray_small'>{item1.message}</p></div>
-                  <button
+                   <div className='admin_item_but'>
+                      <button
                     className='button adm_but'
                     onClick={() => handleDelete1(item1.id)}
-                  >
+                    >
                     Удалить
                     </button>
+                    <button
+                    className='button adm_but'
+                    
+                  >
+                    Взять в работу
+                    </button>
+
+                   </div>
+
                   </div>
+                  
                  ))}
                  </div>
+                 <div className="pagination">
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+                      <button
+                        key={pageNum}
+                        className={`button adm_but ${currentPage === pageNum ? 'active1' : ''}`}
+                        onClick={() => setCurrentPage(pageNum)} // Меняем страницу, не делаем запрос
+                      >
+                        {pageNum}
+                      </button>
+                    ))}
+                    </div>
+                    
         </div>
     
         

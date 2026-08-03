@@ -87,3 +87,39 @@
 .autorisation_form{
     margin: auto;
 }
+.pagination{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.active1{
+    background-color: blueviolet;
+}
+.dont_work {
+  font-family: 'Poppins-Regular';
+font-weight: 400;
+font-size: 18px;
+line-height: 160%;
+color: white;
+animation: blink-animation 1s infinite;
+
+}
+@keyframes blink-animation {
+  0% { opacity: 1;  color:  red;}
+  50% { opacity: 0;  color:  red; }
+  100% { opacity: 1; color:  red; }
+}
+
+.in_work{
+    ont-family: 'Poppins-Regular';
+font-weight: 400;
+font-size: 18px;
+line-height: 160%;
+    color: green;
+}
+
+.admin_item_but{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

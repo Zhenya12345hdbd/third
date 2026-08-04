@@ -15,14 +15,17 @@ function Admin() {
   const [items2, setItems2] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [status, setStatus] = useState('initial');
 
 const [user, setUser] = useState(null);
   const [message, setMessage] = useState('');
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
-  const [currentPage, setCurrentPage] = useState(1); // Текущая страница
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage1, setCurrentPage1] = useState(1); // Текущая страница
 const ITEMS_PER_PAGE = 6;
-const totalPages = Math.ceil((items1 ? items1.length : 0) / ITEMS_PER_PAGE);
+const totalPages = items1 ? Math.ceil(items1.length / ITEMS_PER_PAGE) : 1;
+  const totalPages1 = items2 ? Math.ceil(items2.length / ITEMS_PER_PAGE) : 1;
 
 const [isBlinking, setIsBlinking] = useState(true);
 
@@ -45,10 +48,12 @@ const [isBlinking, setIsBlinking] = useState(true);
       setLoading(false);
     }
   };
+
   const fetchData1 = async () => {
   setLoading(true);
   setError(null);
   try {
+    /* const res = await fetch('http://q90828s0.beget.tech/api/form.json?t=' + new Date().getTime()); */
     const res = await fetch('/api/form.json?t=' + new Date().getTime());
     if (!res.ok) throw new Error('Network error');
     const result1 = await res.json();
@@ -64,19 +69,44 @@ const [isBlinking, setIsBlinking] = useState(true);
     setLoading(false);
   }
 };
+const fetchData2 = async () => {
+  setLoading(true);
+  setError(null);
+  try {
+    /* const res = await fetch('http://q90828s0.beget.tech/api/finish.json?t=' + new Date().getTime()); */
+    const res = await fetch('/api/finish.json?t=' + new Date().getTime());
+      if (!res.ok) throw new Error('Network error');
+      const result2 = await res.json();
+      const sorted = [...result2].sort((b, a) => new Date(a.date) - new Date(b.date));
+      setItems2(sorted);
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-const getPaginatedItems = () => {
-  if (!items1) return [];
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const endIndex = startIndex + ITEMS_PER_PAGE;
-  return items1.slice(startIndex, endIndex);
-};
+ const getPaginatedItems = () => {
+    if (!items1) return [];
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    return items1.slice(startIndex, endIndex);
+  };
+
+  const getPaginatedItems1 = () => {
+    if (!items2) return [];
+    const startIndex = (currentPage1 - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    return items2.slice(startIndex, endIndex);
+  };
+
 
 // Функция для расчета общего количества страниц
 
   const checkAuth = async () => {
   try {
-    const res = await fetch('http://q90828s0.beget.tech/login.php', {
+    /* const res = await fetch('http://q90828s0.beget.tech/login.php', { */
+      const res = await fetch('/login.php', {
       method: 'GET',
       credentials: 'include', // <-- важно: отправляет куки (сессию)
     });
@@ -104,18 +134,21 @@ const getPaginatedItems = () => {
     checkAuth();
     fetchData();
     fetchData1();
+    fetchData2();
     
   }, []);
 const handleRefresh = () => {
   fetchData();
   fetchData1();
+  fetchData2();
 };
   if (loading) return <div>Загрузка...</div>;
   if (error) return <div>Ошибка загрузки: {error.message}</div>;
 
  const handleDelete = async (id) => {
   try {
-    const res = await fetch('http://q90828s0.beget.tech/handler.php', {
+    /* const res = await fetch('http://q90828s0.beget.tech/handler.php', { */
+      const res = await fetch('/handler.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id }),
@@ -129,7 +162,8 @@ const handleRefresh = () => {
 };
 const handleDelete1 = async (id) => {
   try {
-    const res = await fetch('http://q90828s0.beget.tech/handler1.php', {
+    /* const res = await fetch('http://q90828s0.beget.tech/handler1.php', { */
+      const res = await fetch('/handler1.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id }),
@@ -144,7 +178,8 @@ const handleDelete1 = async (id) => {
 
 const handleLogin = async (e) => {
     e.preventDefault();
-    const res = await fetch('http://q90828s0.beget.tech/login.php', {
+    /* const res = await fetch('http://q90828s0.beget.tech/login.php', { */
+      const res = await fetch('/login.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ login, password }),
@@ -165,7 +200,8 @@ const handleLogin = async (e) => {
 
   
    const handleLogout = async () => {
-    await fetch('http://q90828s0.beget.tech/logout.php', { 
+    /* await fetch('http://q90828s0.beget.tech/logout.php', { */
+      await fetch('/logout.php', {
         method: 'GET',
         credentials: 'include' // <-- Обязательно!
     });
@@ -173,6 +209,32 @@ const handleLogin = async (e) => {
     // Очистить items, если они приватные
     setItems(null); 
   };
+
+const handleTakeInWork = async (id) => {
+  try {
+    /* const res = await fetch('http://q90828s0.beget.tech/api/update.php', { */
+      const res = await fetch('/api/update.php', { // <-- проверь имя файла на сервере
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, status: 'Отработано' }), // новый статус
+      credentials: 'include', // если нужна авторизация на сервере
+    });
+
+    if (!res.ok) {
+      throw new Error('Ошибка при обновлении статуса');
+    }
+
+    const result = await res.json();
+    console.log('Статус обновлён:', result);
+    fetchData1(); // перезагружаем список заявок
+  } catch (err) {
+    console.error(err);
+    alert('Не удалось обновить статус: ' + err.message);
+  }
+};
+
+
+
   return (
   <section>
     <div className='container admin'>
@@ -210,7 +272,7 @@ const handleLogin = async (e) => {
         </form>
       )}
     </div>
-    {!user ? (
+    {user ? (
        <div className='information'>
           <div className='information_first_form'>
             
@@ -242,7 +304,7 @@ const handleLogin = async (e) => {
                    <div className='line_admin_form'><p className='black_text_middle'>Фамилия:</p> <p className='gray_small'>{item1.last_name}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'>Email:</p> <p className='gray_small'>{item1.email}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'>Телефон</p> <p className='gray_small'>{item1.phone}</p></div>
-                   <div className='line_admin_form'><p className='black_text_middle'>Статус</p> <p className='in_work'>{item1.status}</p></div>
+                   <div className='line_admin_form'><p className='black_text_middle'>Статус</p> <p className='in_work' className={`${item1.status === "Отработано" ? 'in_work' : 'dont_work'}`}>{item1.status}</p></div>
 
                    <div className='line_admin_form message'><p className='black_text_middle'>Сообщение</p> <p className='gray_small'>{item1.message}</p></div>
                    <div className='admin_item_but'>
@@ -254,6 +316,7 @@ const handleLogin = async (e) => {
                     </button>
                     <button
                     className='button adm_but'
+                    onClick={() => handleTakeInWork(item1.id)}
                     
                   >
                     Взять в работу
@@ -278,15 +341,51 @@ const handleLogin = async (e) => {
                     </div>
                     
         </div>
+         <div className='information_main_form'>
+                  <h1 className='black_text_middle'>Форма для связи</h1>
+                  <div className='rass'>
+                {getPaginatedItems1().map((item2, index2) => (
+                  <div key={index2} className='admin_items '>
+                    <div className='line_admin_form'><p className='black_text_middle'>Дата</p> <p className='gray_small'>{item2.date}</p></div>
+                   <div className='line_admin_form'><p className='black_text_middle'> Имя:</p> <p className='gray_small'>{item2.name}</p></div>
+                   <div className='line_admin_form'><p className='black_text_middle'>Фамилия:</p> <p className='gray_small'>{item2.last_name}</p></div>
+                   <div className='line_admin_form'><p className='black_text_middle'>Email:</p> <p className='gray_small'>{item2.email}</p></div>
+                   <div className='line_admin_form'><p className='black_text_middle'>Телефон</p> <p className='gray_small'>{item2.phone}</p></div>
+                   <div className='line_admin_form'><p className='black_text_middle'>Статус</p> <p className='in_work' className={`${item2.status === "Отработано" ? 'in_work' : 'dont_work'}`}>{item2.status}</p></div>
+
+                   <div className='line_admin_form message'><p className='black_text_middle'>Сообщение</p> <p className='gray_small'>{item2.message}</p></div>
+                   <div className='admin_item_but'>
+                      <button
+                    className='button adm_but'
+                    onClick={() => handleDelete1(item2.id)}
+                    >
+                    Удалить
+                    </button>
+                   </div>
+
+                  </div>
+                  
+                 ))}
+                 </div>
+                 <div className="pagination">
+                    {Array.from({ length: totalPages1 }, (_, i) => i + 1).map((pageNum1) => (
+                      <button
+                        key={pageNum1}
+                        className={`button adm_but ${currentPage1 === pageNum1 ? 'active1' : ''}`}
+                        onClick={() => setCurrentPage1(pageNum1)} // Меняем страницу, не делаем запрос
+                      >
+                        {pageNum1}
+                      </button>
+                    ))}
+                    </div>
+                    
+        </div>
     
         
       <button className='button admin_button' onClick={handleRefresh}>Обновить</button>
         </div>
          
         ):(<></>)}
-        
-        
-       
     </div>
   </section>
 );

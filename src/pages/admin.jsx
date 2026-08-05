@@ -1,9 +1,12 @@
 import './admin.css'
-
+import { Link } from 'react-router-dom';
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from 'axios';
+import Docxtemplater from 'docxtemplater';
+import JSZipUtils from 'jszip-utils';
 
+import 'pizzip';
 
 
 
@@ -28,6 +31,9 @@ const totalPages = items1 ? Math.ceil(items1.length / ITEMS_PER_PAGE) : 1;
   const totalPages1 = items2 ? Math.ceil(items2.length / ITEMS_PER_PAGE) : 1;
 
 const [isBlinking, setIsBlinking] = useState(true);
+
+
+
 
 
 
@@ -170,6 +176,21 @@ const handleDelete1 = async (id) => {
     });
     if (!res.ok) throw new Error('Ошибка при удалении');
     await res.json();
+    fetchData2();
+  } catch (err) {
+    console.error(err);
+  }
+};
+const handleDelete2 = async (id) => {
+  try {
+    /* const res = await fetch('http://q90828s0.beget.tech/handler1.php', { */
+      const res = await fetch('/api/handler2.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id }),
+    });
+    if (!res.ok) throw new Error('Ошибка при удалении');
+    await res.json();
     fetchData1();
   } catch (err) {
     console.error(err);
@@ -216,7 +237,7 @@ const handleTakeInWork = async (id) => {
       const res = await fetch('/api/update.php', { // <-- проверь имя файла на сервере
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id, status: 'Отработано' }), // новый статус
+      body: JSON.stringify({ id, status: 'В работе' }), // новый статус
       credentials: 'include', // если нужна авторизация на сервере
     });
 
@@ -295,7 +316,7 @@ const handleTakeInWork = async (id) => {
         </div>
         
         <div className='information_main_form'>
-                  <h1 className='black_text_middle'>Форма для связи</h1>
+                  <h1 className='black_text_middle'>Новые заявки</h1>
                   <div className='rass'>
                 {getPaginatedItems().map((item1, index1) => (
                   <div key={index1} className='admin_items '>
@@ -342,7 +363,7 @@ const handleTakeInWork = async (id) => {
                     
         </div>
          <div className='information_main_form'>
-                  <h1 className='black_text_middle'>Форма для связи</h1>
+                  <h1 className='black_text_middle'>Выполненные заявки</h1>
                   <div className='rass'>
                 {getPaginatedItems1().map((item2, index2) => (
                   <div key={index2} className='admin_items '>
@@ -351,15 +372,15 @@ const handleTakeInWork = async (id) => {
                    <div className='line_admin_form'><p className='black_text_middle'>Фамилия:</p> <p className='gray_small'>{item2.last_name}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'>Email:</p> <p className='gray_small'>{item2.email}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'>Телефон</p> <p className='gray_small'>{item2.phone}</p></div>
-                   <div className='line_admin_form'><p className='black_text_middle'>Статус</p> <p className='in_work' className={`${item2.status === "Отработано" ? 'in_work' : 'dont_work'}`}>{item2.status}</p></div>
+                   <div className='line_admin_form'><p className='black_text_middle'>Статус</p> <p className='in_work' className={`${item2.status === "В работе" ? 'in_work' : 'dont_work'}`}>{item2.status}</p></div>
 
                    <div className='line_admin_form message'><p className='black_text_middle'>Сообщение</p> <p className='gray_small'>{item2.message}</p></div>
                    <div className='admin_item_but'>
                       <button
                     className='button adm_but'
-                    onClick={() => handleDelete1(item2.id)}
+                    onClick={() => handleDelete2(item2.id)}
                     >
-                    Удалить
+                    Отметить как выполненную
                     </button>
                    </div>
 
@@ -386,6 +407,8 @@ const handleTakeInWork = async (id) => {
         </div>
          
         ):(<></>)}
+    
+        <Link to="/Admin2">assasssa</Link>
     </div>
   </section>
 );

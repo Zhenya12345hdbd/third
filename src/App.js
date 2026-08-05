@@ -11,7 +11,7 @@ import { menu_about } from "./components/all_component_top/about_data";
 import Portofolio from "./pages/portofolio";
 import Progect from "./pages/prigect";
 import Admin from "./pages/admin";
-
+import Admin2 from "./pages/admin2";
 
 function App() {
 
@@ -25,6 +25,7 @@ function App() {
       <Routes>
          <Route path="/" element={<Main_Page/>}/>
           <Route path="/Admin" element={<Admin/>}/>
+          <Route path="/Admin2" element={<Admin2/>}/>
          <Route path="/:path" element={<About />}/>
          <Route path="/Our/:item" element={<Portofolio/>}/>
           <Route path="/Our/:item/:project" element={<Progect/>}/>

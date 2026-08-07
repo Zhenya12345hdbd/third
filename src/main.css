@@ -62,6 +62,16 @@ font-size: 18px;
 line-height: 160%;
 color: #9C9C9C;
 }
+.gray_small_for{
+        font-family: 'Poppins-Regular';
+font-weight: 400;
+font-size: 18px;
+line-height: 100%;
+color: #9C9C9C;
+height: 70px;
+text-align: start;
+width: 367px;
+}
 .big_black_text{
     font-family: 'Poppins-SemiBold';
 font-weight: 600;

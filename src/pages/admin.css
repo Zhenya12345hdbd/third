@@ -5,6 +5,7 @@
     flex-direction: column;
     height: 100%;
     padding-bottom: 50px;
+    width: 1200px;
 }
 .input_form{
     width: 40%;
@@ -117,9 +118,33 @@ font-size: 18px;
 line-height: 160%;
     color: yellow;
 }
+.complate{
+    ont-family: 'Poppins-Regular';
+font-weight: 400;
+font-size: 18px;
+line-height: 160%;
+    color: green;
+}
 
 .admin_item_but{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+}
+.fill_message{
+    position: absolute;
+}
+.full_text{
+    width: 600px;
+    height: 600px;
+    
+    border: 1px solid gray;
+    background-color: white;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-right: 20px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
 }

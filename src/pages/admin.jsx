@@ -20,6 +20,9 @@ function Admin() {
   const [error, setError] = useState(null);
   const [status, setStatus] = useState('initial');
 
+   const [fullText, setFullText] = useState();
+  const [openFull, setOpenFull] = useState('none');
+
 const [user, setUser] = useState(null);
   const [message, setMessage] = useState('');
   const [login, setLogin] = useState('');
@@ -43,8 +46,8 @@ const [isBlinking, setIsBlinking] = useState(true);
     setLoading(true);
     setError(null);
     try {
-      /* const res = await fetch('http://q90828s0.beget.tech/data.json?t=' + new Date().getTime()); */
-      const res = await fetch('/data.json?t=' + new Date().getTime());
+      const res = await fetch('http://q90828s0.beget.tech/data.json?t=' + new Date().getTime());
+      /* const res = await fetch('/data.json?t=' + new Date().getTime()); */
       if (!res.ok) throw new Error('Network error');
       const result = await res.json();
       setItems(result);
@@ -59,8 +62,8 @@ const [isBlinking, setIsBlinking] = useState(true);
   setLoading(true);
   setError(null);
   try {
-    /* const res = await fetch('http://q90828s0.beget.tech/api/form.json?t=' + new Date().getTime()); */
-    const res = await fetch('/api/form.json?t=' + new Date().getTime());
+    const res = await fetch('http://q90828s0.beget.tech/api/form.json?t=' + new Date().getTime());
+    /* const res = await fetch('/api/form.json?t=' + new Date().getTime()); */
     if (!res.ok) throw new Error('Network error');
     const result1 = await res.json();
     
@@ -79,8 +82,8 @@ const fetchData2 = async () => {
   setLoading(true);
   setError(null);
   try {
-    /* const res = await fetch('http://q90828s0.beget.tech/api/finish.json?t=' + new Date().getTime()); */
-    const res = await fetch('/api/finish.json?t=' + new Date().getTime());
+    const res = await fetch('http://q90828s0.beget.tech/api/finish.json?t=' + new Date().getTime());
+    /* const res = await fetch('/api/finish.json?t=' + new Date().getTime()); */
       if (!res.ok) throw new Error('Network error');
       const result2 = await res.json();
       const sorted = [...result2].sort((b, a) => new Date(a.date) - new Date(b.date));
@@ -111,8 +114,8 @@ const fetchData2 = async () => {
 
   const checkAuth = async () => {
   try {
-    /* const res = await fetch('http://q90828s0.beget.tech/login.php', { */
-      const res = await fetch('/login.php', {
+    const res = await fetch('http://q90828s0.beget.tech/login.php', {
+      /* const res = await fetch('/login.php', { */
       method: 'GET',
       credentials: 'include', // <-- важно: отправляет куки (сессию)
     });
@@ -153,8 +156,8 @@ const handleRefresh = () => {
 
  const handleDelete = async (id) => {
   try {
-    /* const res = await fetch('http://q90828s0.beget.tech/handler.php', { */
-      const res = await fetch('/handler.php', {
+    const res = await fetch('http://q90828s0.beget.tech/handler.php', {
+      /* const res = await fetch('/handler.php', { */
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id }),
@@ -168,8 +171,8 @@ const handleRefresh = () => {
 };
 const handleDelete1 = async (id) => {
   try {
-    /* const res = await fetch('http://q90828s0.beget.tech/handler1.php', { */
-      const res = await fetch('/handler1.php', {
+    const res = await fetch('http://q90828s0.beget.tech/handler1.php', {
+      /* const res = await fetch('/handler1.php', { */
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id }),
@@ -183,15 +186,15 @@ const handleDelete1 = async (id) => {
 };
 const handleDelete2 = async (id) => {
   try {
-    /* const res = await fetch('http://q90828s0.beget.tech/handler1.php', { */
-      const res = await fetch('/api/handler2.php', {
+    const res = await fetch('http://q90828s0.beget.tech/api/handler2.php', {
+      /* const res = await fetch('/api/handler2.php', { */
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id }),
     });
     if (!res.ok) throw new Error('Ошибка при удалении');
     await res.json();
-    fetchData1();
+    fetchData2();
   } catch (err) {
     console.error(err);
   }
@@ -199,8 +202,8 @@ const handleDelete2 = async (id) => {
 
 const handleLogin = async (e) => {
     e.preventDefault();
-    /* const res = await fetch('http://q90828s0.beget.tech/login.php', { */
-      const res = await fetch('/login.php', {
+    const res = await fetch('http://q90828s0.beget.tech/login.php', {
+      /* const res = await fetch('/login.php', { */
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ login, password }),
@@ -221,8 +224,8 @@ const handleLogin = async (e) => {
 
   
    const handleLogout = async () => {
-    /* await fetch('http://q90828s0.beget.tech/logout.php', { */
-      await fetch('/logout.php', {
+    await fetch('http://q90828s0.beget.tech/logout.php', {
+      /* await fetch('/logout.php', { */
         method: 'GET',
         credentials: 'include' // <-- Обязательно!
     });
@@ -233,8 +236,8 @@ const handleLogin = async (e) => {
 
 const handleTakeInWork = async (id) => {
   try {
-    /* const res = await fetch('http://q90828s0.beget.tech/api/update.php', { */
-      const res = await fetch('/api/update.php', { // <-- проверь имя файла на сервере
+    const res = await fetch('http://q90828s0.beget.tech/api/update.php', {
+      /* const res = await fetch('/api/update.php', {  */// <-- проверь имя файла на сервере
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id, status: 'В работе' }), // новый статус
@@ -248,11 +251,18 @@ const handleTakeInWork = async (id) => {
     const result = await res.json();
     console.log('Статус обновлён:', result);
     fetchData1(); // перезагружаем список заявок
+    fetchData2();
   } catch (err) {
     console.error(err);
     alert('Не удалось обновить статус: ' + err.message);
   }
 };
+
+const fullMessage = (id) =>{
+        const item4 = items1.find(i => i.id === id);
+    setFullText(item4.message)
+    setOpenFull('block');
+  }
 
 
 
@@ -320,14 +330,14 @@ const handleTakeInWork = async (id) => {
                   <div className='rass'>
                 {getPaginatedItems().map((item1, index1) => (
                   <div key={index1} className='admin_items '>
-                    <div className='line_admin_form'><p className='black_text_middle'>Дата</p> <p className='gray_small'>{item1.date}</p></div>
+                    <div className='line_admin_form'><p className='black_text_middle'>Дата(принятия)</p> <p className='gray_small'>{item1.date}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'> Имя:</p> <p className='gray_small'>{item1.name}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'>Фамилия:</p> <p className='gray_small'>{item1.last_name}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'>Email:</p> <p className='gray_small'>{item1.email}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'>Телефон</p> <p className='gray_small'>{item1.phone}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'>Статус</p> <p className='in_work' className={`${item1.status === "Отработано" ? 'in_work' : 'dont_work'}`}>{item1.status}</p></div>
 
-                   <div className='line_admin_form message'><p className='black_text_middle'>Сообщение</p> <p className='gray_small'>{item1.message}</p></div>
+                   <div className='line_admin_form message'><p className='black_text_middle'>Сообщение</p> <p className='gray_small_for'>{item1.message}</p></div>
                    <div className='admin_item_but'>
                       <button
                     className='button adm_but'
@@ -335,6 +345,7 @@ const handleTakeInWork = async (id) => {
                     >
                     Удалить
                     </button>
+                    <button className='button adm_but' onClick={() => fullMessage(item1.id)}>Показать полностью</button>
                     <button
                     className='button adm_but'
                     onClick={() => handleTakeInWork(item1.id)}
@@ -342,13 +353,19 @@ const handleTakeInWork = async (id) => {
                   >
                     Взять в работу
                     </button>
-
                    </div>
 
                   </div>
                   
                  ))}
                  </div>
+                 <div className='fill_message' style={{display : openFull, position : 'fixed',}}>
+                    <div className='full_text'>
+                        <p className='gray_small'>{fullText}</p> 
+                        <button className='button adm_but' onClick={()=>setOpenFull('none')}>закрыть</button>
+
+                    </div>
+                    </div>
                  <div className="pagination">
                     {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
                       <button
@@ -363,18 +380,18 @@ const handleTakeInWork = async (id) => {
                     
         </div>
          <div className='information_main_form'>
-                  <h1 className='black_text_middle'>Выполненные заявки</h1>
+                  <h1 className='black_text_middle'>Активные заявки</h1>
                   <div className='rass'>
                 {getPaginatedItems1().map((item2, index2) => (
                   <div key={index2} className='admin_items '>
-                    <div className='line_admin_form'><p className='black_text_middle'>Дата</p> <p className='gray_small'>{item2.date}</p></div>
+                    <div className='line_admin_form'><p className='black_text_middle'>Поступило</p> <p className='gray_small'>{item2.date}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'> Имя:</p> <p className='gray_small'>{item2.name}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'>Фамилия:</p> <p className='gray_small'>{item2.last_name}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'>Email:</p> <p className='gray_small'>{item2.email}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'>Телефон</p> <p className='gray_small'>{item2.phone}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'>Статус</p> <p className='in_work' className={`${item2.status === "В работе" ? 'in_work' : 'dont_work'}`}>{item2.status}</p></div>
 
-                   <div className='line_admin_form message'><p className='black_text_middle'>Сообщение</p> <p className='gray_small'>{item2.message}</p></div>
+                   <div className='line_admin_form message'><p className='black_text_middle'>Сообщение</p> <p className='gray_small_for'>{item2.message}</p></div>
                    <div className='admin_item_but'>
                       <button
                     className='button adm_but'
@@ -404,11 +421,12 @@ const handleTakeInWork = async (id) => {
     
         
       <button className='button admin_button' onClick={handleRefresh}>Обновить</button>
+      <Link className='button admin_button' to="/Admin2">Выполненные заявки</Link>
         </div>
          
         ):(<></>)}
     
-        <Link to="/Admin2">assasssa</Link>
+        
     </div>
   </section>
 );

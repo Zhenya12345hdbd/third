@@ -1,57 +1,141 @@
-import React from 'react';
-import {
-  Document,
-  Page,
-  Text,
-  View,
-  StyleSheet,
-  PDFDownloadLink,
-} from '@react-pdf/renderer';
+import { useEffect, useState } from 'react';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
 
-const jsonData = [
-  { id: 1, name: 'Alice', role: 'Admin', email: 'alice@example.com' },
-  { id: 2, name: 'Bob', role: 'User', email: 'bob@example.com' },
-  { id: 3, name: 'Charlie', role: 'Editor', email: 'charlie@example.com' },
-];
 
-// Определяем стили
-const styles = StyleSheet.create({
-  page: { padding: 40 },
-  header: { fontSize: 20, marginBottom: 20, fontWeight: 'bold', textAlign: 'center' },
-  section: { marginBottom: 15 },
-  label: { fontWeight: 'bold', color: '#555' },
-  value: { marginLeft: 8 },
-});
 
-// Создаём документ как React-компонент
-const MyDocument = () => (
-  <Document>
-    <Page style={styles.page}>
-      <Text style={styles.header}>Список пользователей</Text>
+function Admin2() {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [items3, setItems3] = useState([]);
+  const [fullText, setFullText] = useState();
+  const [openFull, setOpenFull] = useState('none');
+    const [currentPage2, setCurrentPage2] = useState(1); // Текущая страница
+const ITEMS_PER_PAGE = 6;
+const totalPages2 = items3 ? Math.ceil(items3.length / ITEMS_PER_PAGE) : 1;
 
-      {jsonData.map((user, index) => (
-        <View key={user.id} style={styles.section}>
-          <Text>
-            <Text style={styles.label}>№ {index + 1}: </Text>
-            <Text>{user.name} ({user.role})</Text>
-          </Text>
-          <Text>
-            <Text style={styles.label}>Email: </Text>
-            <Text>{user.email}</Text>
-          </Text>
-        </View>
-      ))}
-    </Page>
-  </Document>
-);
 
-const DownloadPDFButton = () => (
-  <PDFDownloadLink
-    document={<MyDocument />}
-    fileName="users-list-styled.pdf"
-  >
-    {({ loading }) => (loading ? 'Генерация PDF...' : 'Скачать PDF')}
-  </PDFDownloadLink>
-);
 
-export default DownloadPDFButton;
+    const fetchData3 = async () => {
+      try {
+       /*  const response = await fetch('/api/finish.json'); */
+        const response = await fetch('http://q90828s0.beget.tech/api/end.json');
+        if (!response.ok) throw new Error(`Ошибка HTTP: ${response.status}`);
+        const data3 = await response.json();
+        const sorted = [...data3].sort((b, a) =>
+          new Date(a.date) - new Date(b.date)
+        );
+        setItems3(sorted);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+
+  useEffect(() => {
+   
+    fetchData3();
+  }, []);
+
+  const fullMessage = (id) =>{
+        const item4 = items3.find(i => i.id === id);
+    setFullText(item4.message)
+    setOpenFull('');
+  }
+
+  const generatePdf = (id) => {
+    const item4 = items3.find(i => i.id === id);
+    const content = [
+    { text: `Заявка №${item4.id}`, style: 'header' },
+    [
+      [{ text: 'Дата', bold: true }, { text: item4.date }],
+      [{ text: 'Имя', bold: true }, { text: item4.name }],
+      [{ text: 'Фамилия', bold: true }, { text: item4.last_name }],
+      [{ text: 'Email', bold: true }, { text: item4.email }],
+      [{ text: 'Телефон', bold: true }, { text: item4.phone }],
+      [{ text: 'Статус', bold: true }, { text: item4.status }],
+      [{ text: 'Сообщение', bold: true }, { text: item4.message }],
+    ],
+  ];
+
+    const docDefinition = {
+      content,
+      styles: {
+        header: { fontSize: 18, bold: true, margin: [50, 0, 20, 0] },
+      },
+    };
+
+    pdfMake.createPdf(docDefinition).download('items.pdf');
+  };
+
+  if (loading) return <p>Загрузка...</p>;
+  if (error) return <p>Ошибка: {error}</p>;
+
+
+  const getPaginatedItems2 = () => {
+    if (!items3) return [];
+    const startIndex = (currentPage2 - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    return items3.slice(startIndex, endIndex);
+  };
+
+  return (
+    <section>
+    <div className='container admin'>
+      
+      <div className='information_main_form'>
+                  <h1 className='black_text_middle'>Выполненные заявки</h1>
+                  <div className='rass'>
+                {getPaginatedItems2().map((item2, index2) => (
+                  <div key={index2} className='admin_items '>
+                    <div className='line_admin_form'><p className='black_text_middle'>Выполненно</p> <p className='gray_small'>{item2.date}</p></div>
+                   <div className='line_admin_form'><p className='black_text_middle'> Имя:</p> <p className='gray_small'>{item2.name}</p></div>
+                   <div className='line_admin_form'><p className='black_text_middle'>Фамилия:</p> <p className='gray_small'>{item2.last_name}</p></div>
+                   <div className='line_admin_form'><p className='black_text_middle'>Email:</p> <p className='gray_small'>{item2.email}</p></div>
+                   <div className='line_admin_form'><p className='black_text_middle'>Телефон</p> <p className='gray_small'>{item2.phone}</p></div>
+                   <div className='line_admin_form'><p className='black_text_middle'>Статус</p> <p className='complate'>{item2.status}</p></div>
+
+                   <div className='line_admin_form message'><p className='black_text_middle'>Сообщение</p> <p className='gray_small_for'>{item2.message}</p></div>
+                   <div className='admin_item_but'>
+
+                    <button className='button adm_but' onClick={() => generatePdf(item2.id)}>Скачать чек</button>
+                    <button className='button adm_but' onClick={() => fullMessage(item2.id)}>Показать полностью</button>
+                   </div>
+
+                  </div>
+                  
+                 ))}
+                 </div>
+                 <div className='fill_message' style={{display : openFull, position : 'fixed',}}>
+                    <div className='full_text'>
+                        <p className='gray_small'>{fullText}</p> 
+                        <button className='button adm_but' onClick={()=>setOpenFull('none')}>закрыть</button>
+
+                    </div>
+                   
+                 </div>
+                 <div className="pagination">
+                    {Array.from({ length: totalPages2 }, (_, i) => i + 1).map((pageNum1) => (
+                      <button
+                        key={pageNum1}
+                        className={`button adm_but ${currentPage2 === pageNum1 ? 'active1' : ''}`}
+                        onClick={() => setCurrentPage2(pageNum1)} // Меняем страницу, не делаем запрос
+                      >
+                        {pageNum1}
+                      </button>
+                    ))}
+                    </div>
+                    
+        </div>
+
+
+
+    </div>
+    </section>
+
+  );
+}
+
+export default Admin2;

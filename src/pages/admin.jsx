@@ -46,8 +46,8 @@ const [isBlinking, setIsBlinking] = useState(true);
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('http://q90828s0.beget.tech/data.json?t=' + new Date().getTime());
-      /* const res = await fetch('/data.json?t=' + new Date().getTime()); */
+      /* const res = await fetch('http://q90828s0.beget.tech/data.json?t=' + new Date().getTime()); */
+      const res = await fetch('/data.json?t=' + new Date().getTime());
       if (!res.ok) throw new Error('Network error');
       const result = await res.json();
       setItems(result);
@@ -62,8 +62,8 @@ const [isBlinking, setIsBlinking] = useState(true);
   setLoading(true);
   setError(null);
   try {
-    const res = await fetch('http://q90828s0.beget.tech/api/form.json?t=' + new Date().getTime());
-    /* const res = await fetch('/api/form.json?t=' + new Date().getTime()); */
+    /* const res = await fetch('http://q90828s0.beget.tech/api/form.json?t=' + new Date().getTime()); */
+    const res = await fetch('/api/form.json?t=' + new Date().getTime());
     if (!res.ok) throw new Error('Network error');
     const result1 = await res.json();
     
@@ -82,8 +82,8 @@ const fetchData2 = async () => {
   setLoading(true);
   setError(null);
   try {
-    const res = await fetch('http://q90828s0.beget.tech/api/finish.json?t=' + new Date().getTime());
-    /* const res = await fetch('/api/finish.json?t=' + new Date().getTime()); */
+    /* const res = await fetch('http://q90828s0.beget.tech/api/finish.json?t=' + new Date().getTime()); */
+    const res = await fetch('/api/finish.json?t=' + new Date().getTime());
       if (!res.ok) throw new Error('Network error');
       const result2 = await res.json();
       const sorted = [...result2].sort((b, a) => new Date(a.date) - new Date(b.date));
@@ -114,8 +114,8 @@ const fetchData2 = async () => {
 
   const checkAuth = async () => {
   try {
-    const res = await fetch('http://q90828s0.beget.tech/login.php', {
-      /* const res = await fetch('/login.php', { */
+    /* const res = await fetch('http://q90828s0.beget.tech/login.php', { */
+      const res = await fetch('/login.php', {
       method: 'GET',
       credentials: 'include', // <-- важно: отправляет куки (сессию)
     });
@@ -156,8 +156,8 @@ const handleRefresh = () => {
 
  const handleDelete = async (id) => {
   try {
-    const res = await fetch('http://q90828s0.beget.tech/handler.php', {
-      /* const res = await fetch('/handler.php', { */
+    /* const res = await fetch('http://q90828s0.beget.tech/handler.php', { */
+      const res = await fetch('/handler.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id }),
@@ -171,8 +171,8 @@ const handleRefresh = () => {
 };
 const handleDelete1 = async (id) => {
   try {
-    const res = await fetch('http://q90828s0.beget.tech/handler1.php', {
-      /* const res = await fetch('/handler1.php', { */
+    /* const res = await fetch('http://q90828s0.beget.tech/handler1.php', { */
+      const res = await fetch('/handler1.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id }),
@@ -186,8 +186,8 @@ const handleDelete1 = async (id) => {
 };
 const handleDelete2 = async (id) => {
   try {
-    const res = await fetch('http://q90828s0.beget.tech/api/handler2.php', {
-      /* const res = await fetch('/api/handler2.php', { */
+    /* const res = await fetch('http://q90828s0.beget.tech/api/handler2.php', { */
+      const res = await fetch('/api/handler2.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id }),
@@ -202,8 +202,8 @@ const handleDelete2 = async (id) => {
 
 const handleLogin = async (e) => {
     e.preventDefault();
-    const res = await fetch('http://q90828s0.beget.tech/login.php', {
-      /* const res = await fetch('/login.php', { */
+    /* const res = await fetch('http://q90828s0.beget.tech/login.php', { */
+      const res = await fetch('/login.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ login, password }),
@@ -224,8 +224,8 @@ const handleLogin = async (e) => {
 
   
    const handleLogout = async () => {
-    await fetch('http://q90828s0.beget.tech/logout.php', {
-      /* await fetch('/logout.php', { */
+    /* await fetch('http://q90828s0.beget.tech/logout.php', { */
+      await fetch('/logout.php', {
         method: 'GET',
         credentials: 'include' // <-- Обязательно!
     });
@@ -236,8 +236,8 @@ const handleLogin = async (e) => {
 
 const handleTakeInWork = async (id) => {
   try {
-    const res = await fetch('http://q90828s0.beget.tech/api/update.php', {
-      /* const res = await fetch('/api/update.php', {  */// <-- проверь имя файла на сервере
+    /* const res = await fetch('http://q90828s0.beget.tech/api/update.php', { */
+      const res = await fetch('/api/update.php', { // <-- проверь имя файла на сервере
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id, status: 'В работе' }), // новый статус

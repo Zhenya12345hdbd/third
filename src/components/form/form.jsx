@@ -15,8 +15,8 @@ function Form() {
   const onSubmit = async (data) => {
     try {
       // Отправка POST запроса на PHP скрипт
-      const response = await axios.post('http://q90828s0.beget.tech/api/form.php', data);
-      /* const response = await axios.post('/api/form.php', data); */
+      /* const response = await axios.post('http://q90828s0.beget.tech/api/form.php', data); */
+      const response = await axios.post('/api/form.php', data);
       
       if (response.data.success) {
         alert('Данные успешно сохранены!');

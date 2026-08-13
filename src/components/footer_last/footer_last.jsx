@@ -9,14 +9,39 @@ import arr from '../servise/arrow-right.png';
 import { useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import { useEffect } from 'react';
 
 function Footer_last() {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
+  const [forbiddenWords, setForbiddenWords ]= useState()
+   useEffect(() => {
+  axios.get('http://q90828s0.beget.tech/api/list_eng.json')
+    .then(res => setForbiddenWords(res.data))
+    .catch(console.error);
+}, []);
+      
+   
+  
+  const validateInput = (value) => {
+    const lowerValue = value.toLowerCase();
+    
+    // Проверяем, содержит ли ввод хотя бы одно запрещенное слово
+    const hasForbiddenWord = forbiddenWords.some(word => 
+      lowerValue.includes(word)
+    );
+
+    if (hasForbiddenWord) {
+      return "В тексте найдены запрещенные слова";
+    }
+    return true; // Валидация пройдена
+  };
+
+
   const onSubmit = async (data) => {
     try {
       // Используй относительный путь, если PHP лежит в той же папке, что и сборка, или реальный URL
-      const response = await axios.post('/save.php', data);
+      const response = await axios.post('http://q90828s0.beget.tech/save.php', data);
 
       if (response.data.success) {
         alert('Данные успешно сохранены!');
@@ -43,6 +68,7 @@ function Footer_last() {
             <input
               type='email'
               {...register('emailForPost', {
+                validate : validateInput,
                 required: 'Email обязателен',
                 pattern: {
                   value: /^[\w-._%+-]+@([\w-]+\.)+[\w-]{2,}$/,
@@ -52,10 +78,12 @@ function Footer_last() {
               placeholder='Email'
             />
             {errors.emailForPost && (
-              <span style={{ color: 'red', display: 'block', marginTop: '4px' }}>
+              <div style={{ color: 'red', display: 'block', marginTop: '4px' }}>
                 {errors.emailForPost.message}
-              </span>
+              </div>
             )}
+          
+
 
             <button type='submit'>
               <img src={arr} className='arr' alt='Отправить' />

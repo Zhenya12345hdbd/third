@@ -15,15 +15,11 @@ function Footer_last() {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
   const [forbiddenWords, setForbiddenWords ]= useState()
-   useEffect(() => {
-  axios.get('http://q90828s0.beget.tech/api/list_eng.json')
-    .then(res => setForbiddenWords(res.data))
-    .catch(console.error);
-}, []);
+
       
    
   
-  const validateInput = (value) => {
+  /* const validateInput = (value) => {
     const lowerValue = value.toLowerCase();
     
     // Проверяем, содержит ли ввод хотя бы одно запрещенное слово
@@ -35,25 +31,42 @@ function Footer_last() {
       return "В тексте найдены запрещенные слова";
     }
     return true; // Валидация пройдена
-  };
+  }; */
 
 
   const onSubmit = async (data) => {
-    try {
-      // Используй относительный путь, если PHP лежит в той же папке, что и сборка, или реальный URL
-      const response = await axios.post('http://q90828s0.beget.tech/save.php', data);
+  try {
+    const response = await axios.post('/save.php', data);
 
-      if (response.data.success) {
-        alert('Данные успешно сохранены!');
-        reset();
-      } else {
-        alert('Ошибка на сервере: ' + response.data.message);
-      }
-    } catch (error) {
-      console.error('Ошибка сети:', error);
-      alert('Произошла ошибка соединения с сервером.');
+    if (response.data.success) {
+      alert('Данные успешно сохранены!');
+      reset();
+    } else {
+      // Ошибка от PHP (валидация, запрет и т.п.)
+      alert('Ошибка на сервере: ' + (response.data.message || 'Неизвестная ошибка'));
     }
-  };
+  } catch (error) {
+    // Ошибка сети, CORS, 500 и т.д.
+    let errorMessage = 'Произошла ошибка соединения с сервером.';
+
+    if (error.response) {
+      // Сервер ответил (например, 400, 500), но axios считает это ошибкой
+      errorMessage += ' Статус: ' + error.response.status;
+      if (error.response.data && error.response.data.message) {
+        errorMessage += ', Сообщение: ' + error.response.data.message;
+      }
+    } else if (error.request) {
+      // Запрос ушёл, но ответа нет
+      errorMessage += ' Нет ответа от сервера.';
+    } else {
+      // Ошибка в настройке запроса
+      errorMessage += ' Детали: ' + error.message;
+    }
+
+    console.error('Ошибка сети:', error);
+    alert(errorMessage);
+  }
+};
 
   return (
     <section>
@@ -68,7 +81,7 @@ function Footer_last() {
             <input
               type='email'
               {...register('emailForPost', {
-                validate : validateInput,
+                /* validate : validateInput, */
                 required: 'Email обязателен',
                 pattern: {
                   value: /^[\w-._%+-]+@([\w-]+\.)+[\w-]{2,}$/,

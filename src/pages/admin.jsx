@@ -68,13 +68,14 @@ const [isBlinking, setIsBlinking] = useState(true);
   setError(null);
   try {
    /*  const res = await fetch('http://q90828s0.beget.tech/api/form.json?t=' + new Date().getTime()); */
-    const res = await fetch('/api/form.json?t=' + new Date().getTime());
+    const res = await fetch('/api/data.php?t=' + new Date().getTime());
     if (!res.ok) throw new Error('Network error');
     const result1 = await res.json();
     
    const sorted = [...result1].sort((b, a) =>
           new Date(a.date) - new Date(b.date)
         );
+        console.log('Новые данные:', sorted); // Смотри в консоль
     setItems1(sorted); 
     
   } catch (err) {
@@ -88,7 +89,7 @@ const fetchData2 = async () => {
   setError(null);
   try {
     /* const res = await fetch('http://q90828s0.beget.tech/api/finish.json?t=' + new Date().getTime()); */
-    const res = await fetch('/api/finish.json?t=' + new Date().getTime());
+    const res = await fetch('/api/finish.php?t=' + new Date().getTime());
       if (!res.ok) throw new Error('Network error');
       const result2 = await res.json();
       const sorted = [...result2].sort((b, a) => new Date(a.date) - new Date(b.date));
@@ -184,7 +185,7 @@ const handleDelete1 = async (id) => {
     });
     if (!res.ok) throw new Error('Ошибка при удалении');
     await res.json();
-    fetchData2();
+    handleRefresh();
   } catch (err) {
     console.error(err);
   }
@@ -205,16 +206,22 @@ const handleDelete2 = async (id) => {
   }
 };
 
+
 const handleLogin = async (e) => {
-    e.preventDefault();
-    /* const res = await fetch('http://q90828s0.beget.tech/login.php', { */
-      const res = await fetch('/login.php', {
+  e.preventDefault();
+
+  const formData = new FormData();
+  formData.append('login', login);
+  formData.append('password', password);
+
+  try {
+    const res = await fetch('/login.php', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ login, password }),
+      body: formData,
       credentials: 'include',
     });
-    const data = await res.json();
+
+    const data = await res.json(); // теперь это валидный JSON
 
     if (data.success) {
       setUser(data.user);
@@ -225,7 +232,11 @@ const handleLogin = async (e) => {
     } else {
       setMessage(data.message || 'Ошибка авторизации');
     }
-  };
+  } catch (err) {
+    console.error(err);
+    setMessage('Ошибка сети или сервера');
+  }
+};
 
   
    const handleLogout = async () => {
@@ -285,7 +296,7 @@ const fullMessage = (id) =>{
       ) : (
         
         <form onSubmit={handleLogin}>
-          <h1 className='black_text_middle'>Авторизируйтесь</h1>
+          
           <div className='admin_form' style={{ marginBottom: '8px' }}>
             <label className='form_label_text'>Логин: </label>
             <input
@@ -306,7 +317,12 @@ const fullMessage = (id) =>{
             />
           </div>
           {message && <p style={{ color: 'red' }}>{message}</p>}
-          <button type="submit" className='form_label_text' >Войти</button>
+          <div style={{ widht:'100px',display: 'flex', justifyContent: 'space-between' }}>
+             <button type="submit" className='form_label_text' >Войти</button>
+          <button type="submit" className='form_label_text' ></button>
+
+          </div>
+         
         </form>
       )}
     </div>
@@ -337,7 +353,7 @@ const fullMessage = (id) =>{
                   <div className='rass'>
                 {getPaginatedItems().map((item1, index1) => (
                   <div key={index1} className='admin_items '>
-                    <div className='line_admin_form'><p className='black_text_middle'>Дата(принятия)</p> <p className='gray_small'>{item1.date}</p></div>
+                    <div className='line_admin_form'><p className='black_text_middle'>Дата(принятия)</p> <p className='gray_small'>{item1.created_at}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'> Имя:</p> <p className='gray_small'>{item1.name}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'>Фамилия:</p> <p className='gray_small'>{item1.last_name}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'>Email:</p> <p className='gray_small'>{item1.email}</p></div>
@@ -391,7 +407,7 @@ const fullMessage = (id) =>{
                   <div className='rass'>
                 {getPaginatedItems1().map((item2, index2) => (
                   <div key={index2} className='admin_items '>
-                    <div className='line_admin_form'><p className='black_text_middle'>Поступило</p> <p className='gray_small'>{item2.date}</p></div>
+                    <div className='line_admin_form'><p className='black_text_middle'>Поступило</p> <p className='gray_small'>{item2.created_at}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'> Имя:</p> <p className='gray_small'>{item2.name}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'>Фамилия:</p> <p className='gray_small'>{item2.last_name}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'>Email:</p> <p className='gray_small'>{item2.email}</p></div>

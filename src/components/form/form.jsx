@@ -8,62 +8,19 @@ import { useEffect } from 'react';
 
 function Form() {
 
-const [forbiddenWords, setForbiddenWords] = useState([]); // Инициализируем пустым массивом
-  const [forbiddenWordsRus, setForbiddenWordsRus] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
  
   // Инициализация хука формы
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
-useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [resEng, resRus] = await Promise.all([
-          axios.get('http://q90828s0.beget.tech/api/list_eng.json'),
-          axios.get('http://q90828s0.beget.tech/api/list_rus.json')
-        ]);
-        
-        setForbiddenWords(resEng.data || []);
-        setForbiddenWordsRus(resRus.data || []);
-      } catch (err) {
-        console.error('Ошибка загрузки списков:', err);
-        setError('Не удалось загрузить списки запрещенных слов');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  const validateInput = (value) => {
-    if (!value) return true; // Пустое поле обработается required отдельно
-    const lowerValue = value.toLowerCase();
-    // Проверка на наличие запрещенных слов
-    const hasForbiddenWord = forbiddenWords.some(word => 
-      lowerValue.includes(word.toLowerCase())
-    );
-    return hasForbiddenWord ? "В тексте найдены запрещенные слова" : true;
-  };
-
-  // Валидатор для русского текста (имя, сообщение)
-  const validateInputRus = (value) => {
-    if (!value) return true;
-    const lowerValue = value.toLowerCase();
-    const hasForbiddenWord = forbiddenWordsRus.some(word => 
-      lowerValue.includes(word.toLowerCase())
-    );
-    return hasForbiddenWord ? "В тексте найдены запрещенные слова" : true;
-  };
-
 
   // Функция обработки успешной отправки
   const onSubmit = async (data) => {
     try {
       // Отправка POST запроса на PHP скрипт
-      const response = await axios.post('http://q90828s0.beget.tech/api/form.php', data);
-      /* const response = await axios.post('/api/form.php', data); */
+      /* const response = await axios.post('http://q90828s0.beget.tech/api/form.php', data); */
+      const response = await axios.post('/api/form.php', data);
       
       if (response.data.success) {
         alert('Данные успешно сохранены!');
@@ -72,11 +29,23 @@ useEffect(() => {
         alert('Ошибка на сервере: ' + response.data.message);
       }
     } catch (error) {
-      console.error('Ошибка сети:', error);
-      alert('Произошла ошибка соединения с сервером.');
-    }
-  };
+    console.error('Ошибка сети или сервера:', error);
 
+    let msg = 'Произошла ошибка соединения с сервером.';
+    if (error.response) {
+      // Сервер ответил, но не 2xx
+      const data = error.response.data;
+      if (data && typeof data.message === 'string') {
+        msg = 'Ошибка: ' + data.message;
+      } else if (data) {
+        msg = 'Сервер вернул ошибку (неизвестный формат).';
+      }
+    } else if (error.request) {
+      msg = 'Нет ответа от сервера. Проверьте подключение.';
+    }
+    alert(msg);
+  }
+};
 
 
 
@@ -88,7 +57,7 @@ useEffect(() => {
                     <div>
                            <label htmlFor="name" className='form_label_text'>First Name</label>
                     <input type='text'   {...register('name', {
-                            validate : validateInputRus,
+                            
                             required: 'Введите ваше имя',
                             pattern: {
                             value: /^[а-яёА-ЯЁ]+$/,
@@ -109,7 +78,7 @@ useEffect(() => {
                    <div >
                         <label htmlFor="last_name" className='form_label_text'>LAst Name</label>
                     <input type='text'   {...register('last_name', {
-                            validate : validateInputRus,
+                       
                             required: 'Введите вашу фамилию',
                             pattern: {
                             value: /^[а-яёА-ЯЁ]+$/,
@@ -135,7 +104,7 @@ useEffect(() => {
             <div className='form_bottom'>
                     <label htmlFor="email"  className='form_label_text'>Email</label>
                     <input type='email' {...register('email', {
-                             validate : validateInput,
+                          
                             required: 'Email обязателен',
                             pattern: {
                             value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,}$/,
@@ -159,7 +128,7 @@ useEffect(() => {
                      
                         <label htmlFor="message" className='form_label_text'>First Name</label>
                         <input type='text'  {...register('message', {
-                            validate : validateInputRus,
+                        
                             required: 'Напишите что_нибудь',
                             pattern: {
                             value: /^[\p{Script=Cyrillic}\s\p{P}]+$/u,

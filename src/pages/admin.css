@@ -135,8 +135,8 @@ line-height: 160%;
     position: absolute;
 }
 .full_text{
-    width: 600px;
-    height: 600px;
+    width: 400px;
+    height: 400px;
     
     border: 1px solid gray;
     background-color: white;

@@ -19,7 +19,8 @@ const totalPages2 = items3 ? Math.ceil(items3.length / ITEMS_PER_PAGE) : 1;
     const fetchData3 = async () => {
       try {
        /*  const response = await fetch('/api/finish.json'); */
-        const response = await fetch('http://q90828s0.beget.tech/api/end.json');
+        /* const response = await fetch('http://q90828s0.beget.tech/api/end.json'); */
+        const response = await fetch('/api/end.php');
         if (!response.ok) throw new Error(`Ошибка HTTP: ${response.status}`);
         const data3 = await response.json();
         const sorted = [...data3].sort((b, a) =>
@@ -90,12 +91,14 @@ const totalPages2 = items3 ? Math.ceil(items3.length / ITEMS_PER_PAGE) : 1;
                   <div className='rass'>
                 {getPaginatedItems2().map((item2, index2) => (
                   <div key={index2} className='admin_items '>
-                    <div className='line_admin_form'><p className='black_text_middle'>Выполненно</p> <p className='gray_small'>{item2.date}</p></div>
+                    <div className='line_admin_form'><p className='black_text_middle'>Поступило</p> <p className='gray_small'>{item2.created_at}</p></div>
+                    <div className='line_admin_form'><p className='black_text_middle'>Выполненно</p> <p className='gray_small'>{item2.finished_at}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'> Имя:</p> <p className='gray_small'>{item2.name}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'>Фамилия:</p> <p className='gray_small'>{item2.last_name}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'>Email:</p> <p className='gray_small'>{item2.email}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'>Телефон</p> <p className='gray_small'>{item2.phone}</p></div>
                    <div className='line_admin_form'><p className='black_text_middle'>Статус</p> <p className='complate'>{item2.status}</p></div>
+
 
                    <div className='line_admin_form message'><p className='black_text_middle'>Сообщение</p> <p className='gray_small_for'>{item2.message}</p></div>
                    <div className='admin_item_but'>
